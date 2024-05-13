@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표 관련태그</title>
+    <!-- css 영역 -->
+    <style>
+        /* css 영역의 주석 : <!-- 주석 x --> */
+        #tt {
+            background-color: lightgray;
+
+        }
+
+        thead {
+            background-color: magenta;
+            color: white;
+        }
+
+        tfoot {
+            background-color: darkgreen;
+            color: yellow;
+        }
+
+        h2 {
+            color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        표(table) : 문서에서 대량의 데이터를 정리해서 표현하고자 할때 사용.
+                    행과 열로 이루어져 있음
+        표를 구성하는 태그 <table></table>, <tr></tr>, <td>, <th>
+     -->
+
+    <h1>표 만들기 (4행 3열)</h1>
+    <table border="1">
+        <caption><b>웹 브라우저의 종류</b></caption> <!-- 테이블의 제목 -->
+
+        <tr>
+            <th width="130" , height="30">브라우저명</th>
+            <th width="80">제조사</th>
+            <th width="200">홈페이지</th>
+        </tr>
+
+        <!-- (tr>td*3)*3 : Emmet 구문-->
+        <tr>
+            <td>Internet Explore</td>
+            <td>MS</td>
+            <td>http://microsoft.com</td>
+        </tr>
+        <tr>
+            <td>Chrome</td>
+            <td>Google</td>
+            <td>http://google.com</td>
+        </tr>
+        <tr>
+            <td>Firefox</td>
+            <td>Mozila</td>
+            <td>http://mozilla.org</td>
+        </tr>
+    </table>
+    <hr>
+
+    <h1>표의 행과 열을 합치는 속성</h1>
+    <!-- 셀태그(th, td)와 함께 사용되는 속성으로 행 또는 열을 합칠 수 있다. 
+        rowspan = "2" : 2개의 열을 행기준으로 합치기. (행병합)
+        colspan = "2" : 2개의 열을 열기준으로 합치기. (열병합)
+
+    -->
+
+
+    <h3>이력서</h3>
+    <table border="1" style="border-collapse: collapse;">
+        <tr>
+            <td colspan="2" rowspan="2" width="130" height="130">사진</td>
+            <td width="80">이름</td>
+            <td width="200"></td>
+        </tr>
+        <tr>
+            <td>연락처</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td width="70" height="50">주소</td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td height="300">자기소개</td>
+            <td colspan="3"></td>
+        </tr>
+    </table>
+
+    <hr>
+    <h2>테이블 내에 구조 나누기</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>이름</td>
+                <td>나이</td>
+                <td>주소</td>
+            </tr>
+        </thead>
+
+        <tbody id="tt">
+            <tr>
+                <td>홍길동</td>
+                <td>30</td>
+                <td>서울</td>
+            </tr>
+            <tr>
+                <td>김길동</td>
+                <td>30</td>
+                <td>부산</td>
+            </tr>
+            <tr>
+                <td>남길동</td>
+                <td>30</td>
+                <td>광주</td>
+            </tr>
+        </tbody> <!-- tbody를 만들지 않아도 브라우저가 만들어줄 수 있다.-->
+
+        <tfoot>
+            <tr>
+                <th colspan="2">총원</th>
+                <td> 3명</td>
+            </tr>
+        </tfoot>
+    </table>
+
+</body>
+
+</html>
