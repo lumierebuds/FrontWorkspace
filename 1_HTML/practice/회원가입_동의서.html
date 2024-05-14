@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 동의서</title>
+    <style>
+        iframe {
+            border: 1px solid grey;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="agreement">
+
+        <fieldset>
+            <legend>
+                <h1>회원가입 동의서</h1>
+            </legend>
+
+            <h2>이용약관 동의(필수)</h2>
+            <iframe src="이용약관.html">
+
+            </iframe>
+            <p>
+                <input type="radio" name="use" id="agr_use" value="Y"><label for="agr_use">동의합니다.</label>
+                <input type="radio" name="use" id="disagr_use" value="N"><label for="disagr_use">동의하지않습니다.</label>
+            </p>
+
+
+            <h2>개인정보 수집 및 이용 동의(필수)</h2>
+            <iframe src="개인정보.html">
+
+            </iframe>
+            <p>
+                <input type="radio" name="private" id="agr_private" value="Y"><label for="agr_private">동의합니다.</label>
+                <input type="radio" name="private" id="disagr_private" value="N"><label for="disagr_private">동의하지
+                    않습니다.</label>
+            </p>
+
+            <p>
+                <input type="checkbox" name="all" id="All"><label for="All">모두 동의합니다.</label>
+            </p>
+
+            <input type="reset" value="취소">
+            <input type="submit" value="확인">
+
+        </fieldset>
+
+    </form>
+
+</body>
+
+</html>
