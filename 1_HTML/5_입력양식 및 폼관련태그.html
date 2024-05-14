@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입력양식 및 폼관련태그</title>
+</head>
+
+<body>
+    <h1>입력양식 관련 태그</h1>
+
+    <h2>input 태그</h2>
+    <p>사용자에게 값을 입력받을 수 있는 텍스트상자 또는 체크박스 등등을 만들수 있음</p>
+
+    아이디 : <input type="text"> <br>
+    비밀번호: <input type="password"> <br>
+    취미 : 축구 <input type="checkbox"> <br>
+    <hr>
+    <h1>폼 관련 태그</h1>
+    <p>
+        form 태그 내의 submit 버튼 클릭시 form안에 작성된 사용자가 입력한 값들을
+        "서버"로 넘겨주면서 "요청"을 수행하는 역할을 함.
+        <br>
+
+        form action="서버의경로" method="전송방법" <br><br>
+
+        * action 속성 : form 내에 사용자가 입력한 값들을 요청할 "서버의 경로"를 제시 <br>
+
+        * method 속성 : 요청 전송방식을 지정하는 속성(get(기본값)/post) <br><br>
+        get -> 요청시 사용자가 작성한 값들이 url에 노출되는 방식 <br>
+        post -> 요청시 사용자가 작성한 값들이 url에 노출되지 않는방식 <br>
+    </p>
+    <fieldset>
+        <form action="test" method="get">
+            검색할 내용 : <input type="text" name="keyword">
+            <input type="submit" value="검색">
+
+        </form>
+    </fieldset>
+
+    <form action="" method="post">
+        <fieldset>
+            <legend>내 정보 입력</legend>
+            입력 1 : <input type="text" name="text1"> <br>
+            입력 2 : <input type="text" name="text2">
+        </fieldset>
+        <fieldset>
+            <legend>다른 사람 정보</legend>
+            입력 3 : <input type="text" name="text3"> <br>
+            입력 4 : <input type="text" name="text4">
+        </fieldset>
+
+    </form>
+
+    <h3>text와 관련된 input태그들 </h3>
+
+    <form action="1234">
+        <p>
+            - 한 "줄" 짜리 입력할 수 있는 텍스트 상자(기본값)
+        </p>
+
+        <label>아이디 : </label>
+        <input type="text" name="userId" placeholder="아이디를 입력하세요." maxlength="12" required>
+        <br>
+
+        <h3>type : "password"</h3>
+        <p>
+            - 비밀번호를 입력할 수 있는 텍스트 상자
+        </p>
+        <label>비밀번호</label>
+        <input type="password" name="userPwd" placeholder="영문, 숫자, 특수문자 8자 이상" maxlength="15" required>
+
+        <h3>type="search/url/email"</h3>
+        <p>
+            - 겉모습은 일반 텍스트박스와 유사하지만 세분화된 기능이 추가된 속성들
+        </p>
+
+        검색 : <input type="search" name="kewword"> <br>
+        홈페이지 : <input type="url" name="homepage"> <br>
+        이메일 : <input type="email" name="email"> <br>
+        <input type="submit" value="제출">
+
+
+
+
+    </form>
+
+    <h2>textarea 태그 </h2>
+    <p>
+        - 텍스트를 입력할 수 있는 텍스트상자이나 "여러줄" 입력이 가능
+    </p>
+    <form action="test">
+        <fieldset>
+            <legend>글작성</legend>
+            글제목: <input type="text" name="title" size="30"> <br>
+            글내용: <textarea name="content" cols="30" rows="10" style="resize: none;"></textarea>
+            <input type="submit" value="작성">
+        </fieldset>
+    </form>
+
+    <hr>
+
+    <h2>숫자와 관련된 input 태그들</h2>
+
+    <form action="test">
+        <h3>type="number"</h3>
+        <p>
+            - 숫자값만 작성 가능한 텍스트 상자 <br>
+            - 스핀박스를 제공 (스핀박스 : 위, 아래 화살표 버튼)
+        </p>
+
+        수량 : <input type="number" name="amount" value="0" min="0" max="20" step="5">
+
+        <h3> type="range"</h3>
+        <p>
+            - 슬라이드바를 통해 숫자 지정 가능
+        </p>
+
+        점수 : <input type="range" name="score" min="0" max="100" step=20>
+
+        <br><br>
+        <input type="submit">
+        <input type="reset">
+
+    </form>
+
+    <h2>날짜 및 시간과 관련된 input태그의 타입</h2>
+    <form action="date">
+        <h3>type="date/month/week/time/datetime-local"</h3>
+
+        date : <input type="date" name="date"> <br>
+        month : <input type="month" name="month"> <br>
+        week : <input type="week" name="week"> <br>
+        time : <input type="time" name="time"> <br>
+        datetime-local : <input type="datetime-local" name="datetime-local">
+        <!-- 제출을 위한 input type은 "submit"으로 해야한다. -->
+        <input type="submit">
+        <input type="button" value="버튼">
+    </form>
+
+
+    <!-- <button>버튼</button> -->
+    <hr>
+    <h2></h2>
+    <form action="radio">
+
+        <h3>radio버튼(type="radio")</h3>
+        <p>
+            - 제시한 여러개의 값들중 오직 "한개"만 선택해야 할때 사용 <br>
+            (name 속성값이 같은 것들끼리 그룹으로 만들어진다.)
+            - 제출(요청) 현재 선택된(checked) 값이 넘어간다.
+        </p>
+        성별:
+        <input type="radio" name="gender" id="x" value="X"> <label for="x">선택안함</label>
+        <input type="radio" name="gender" id="m" value="M"> <label for="m">남자</label>
+        <input type="radio" name="gender" id="f" value="F"> <label for="f">여자</label>
+        <input type="submit" value="제출">
+        <br><br>
+
+        <h3>체크박스(type="checkbox")</h3>
+        <p>
+            - 제시한 여러개의 값들 중 "여러개"를 선택해야하는 경우
+            - 현재 선택된(checked)값들이 넘어감 <br>
+            - 넘기고자 하는 value값을 명시해야함. (기본값 on/off)
+        </p>
+
+        취미:
+        // (input:checkbox[name=hobby]+label) * 3 <br>
+        <input type="checkbox" name="hobby" id="base" value="baseball"> <label for="base">야구</label>
+
+        <input type="checkbox" name="hobby" id="basket" value="basketball"> <label for="basket">농구</label>
+
+        <input type="checkbox" name="hobby" id="soccer" value="soccer"> <label for="soccer">축구</label>
+
+        <br><br>
+
+        <input type="submit" value="제출">
+    </form>
+
+    <h2>추가적인 input 태그의 타입</h2>
+    <form action="etc">
+
+        <h3>색상을 지정할 수 있는 input (type="color")</h3>
+        색상 : <input type="color" name="color" id="">
+
+        <h3>type="file"</h3>
+        <p>
+            - 첨부파일을 하나 선택할 수 있는 input <br>
+            - 첨부파일선택 : <input type="file" name="upfile">
+        </p>
+
+        <h3>type="hidden"</h3>
+        <p>
+            - 특정값을 사용자에게 입력받지 않고 화면에 노출시키지 않고 넘기고자 하는 값이 있는 경우 사용하는 input 태그 <br>
+            Hidden 태그 : <input type="hidden" name="hidden" value="10">
+        </p>
+
+        <input type="submit">
+    </form>
+
+    <h2>select 태그와 option 태그</h2>
+    <p>
+        - 사용자에게 직접 키보드로 값을 입력받는게 아니라
+        내가 제시한 옵션(option)들 중에서 선택할 수 있게끔 해주는 태그 <br>
+
+        - 제출 시 현재 선택된(selected) 값이 넘어감 <br>
+        - 각각의 option에 value 속성값을 명시했을 경우 value값이 전달되고,
+        명시하지 않은 경우 option 태그의 content 영역의 값이 넘어간다.
+    </p>
+
+    <form action="select">
+        국적 :
+        <select name="national">
+            <option value="ko">한국</option>
+            <option value="us">미국</option>
+            <option value="eu">영국</option>
+            <option value="ru">러시아</option>
+            <option selected>선택안함</option>
+        </select>
+
+        <br><br>
+
+        <h4>dataList : select + input:text</h4>
+        좋아하는 색상 : <input type="text" name="color" list="colorList">
+        <datalist id="colorList">
+            <option>검정색</option>
+            <option>흰색</option>
+            <option>하늘색</option>
+            <option>핑크색</option>
+        </datalist>
+
+        <input type="submit" value="제출">
+    </form>
+
+    <br><br><br><br><br><br><br><br>
+</body>
+
+</html>
