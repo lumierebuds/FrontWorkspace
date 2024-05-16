@@ -1,0 +1,118 @@
+/* 1. 속성 선택자 */
+
+/* div중 name 속성값이 name1과 "일치"하는 요소 */
+div[name=name1] {
+    background-color: orangered;
+}
+
+/* div중 name속성값에 name1이 "포함"되어있는 요소 */
+div[name~=name1] {
+    background-color: yellow;
+}
+
+/* div중 class속성값이 div로 "시작"되는 요소 */
+div[class|=div] {
+    background-color: cyan;
+}
+
+/* div 중 name 속성값이 na로 "시작"되는 요소 */
+div[name^=na] {
+    background-color: blue;
+}
+
+/* div중 class 속성값이 ss로 "끝"나는 요소 */
+div[class$=ss] {
+    color: white;
+}
+
+/* div중 class 속성값에 i가 "포함"되어있는 요소 */
+div[class*=i] {
+    background-color: yellow;
+    color: red;
+}
+
+/* 2. 자손선택자와 후손선택자 */
+/* a > b : a요소의 자손들중 b요소들만 선택 */
+#test1>h4 {
+    background-color: orangered;
+}
+
+#test1>ul>li {
+    background-color: darkcyan;
+}
+
+/* a b : a요소의 후손들 중에서 b요소만 선택 */
+#test1 li {
+    color: red;
+    background-color: darkorange;
+
+}
+
+/* 3. 동위선택자 */
+
+/* a+B : a요소 뒤에 b요소 하나만을 선택 */
+#test2+div {
+    background-color: yellow;
+}
+
+#test2+ul {
+    /* 바로뒤의 요소가 아니기 때문에 x*/
+    background-color: pink;
+}
+
+/* a~b : a요소 뒤의 모든 b요소 선택 */
+#test2~ul {
+    background-color: deeppink;
+}
+
+/* 4. 반응 선택자 */
+.area {
+    background-color: yellowgreen;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+/* active: 선택되었을때(마우스클릭) */
+#active-test:active {
+    background-color: yellow;
+    color: red;
+
+}
+
+/* hover: 마우스를 올렸을때 */
+#hover-test:hover {
+    background-color: magenta;
+    color: white;
+}
+
+/* 5. 상태선택자 */
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+
+}
+
+input[type=checkbox]:checked {
+    width: 50px;
+    height: 50px;
+}
+
+/* 체크된 상태의 바로 다음 label요소 폰트를 조절 */
+input[type=checkbox]:checked+label {
+    font-size: 50px;
+}
+
+/* 입력중인 */
+input[name^=user]:focus {
+    background-color: pink;
+    border: 1px solid red;
+}
+
+button:enabled {
+    background-color: fuchsia;
+}
+
+button:disabled {
+    background-color: red;
+}
