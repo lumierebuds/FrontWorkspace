@@ -19,30 +19,41 @@
             <legend>
                 <h1>회원가입 동의서</h1>
             </legend>
+            <div>
+                <h2>이용약관 동의(필수)</h2>
+                <iframe src="이용약관.html">
 
-            <h2>이용약관 동의(필수)</h2>
-            <iframe src="이용약관.html">
+                </iframe>
+                <!-- 강사님 코드
+            <textarea cols="50" rows="8" style="resize:none;">
+                여러분을 환영합니다.
+                네이버 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 네이버 서비스의 이용과 관련하여 네이버 서비스를 제공하는 네이버 주식회사(이하 ‘네이버’)와 이를 이용하는 네이버 서비스
+                회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 네이버 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+            </textarea>
+            -->
 
-            </iframe>
-            <p>
-                <input type="radio" name="use" id="agr_use" value="Y"><label for="agr_use">동의합니다.</label>
-                <input type="radio" name="use" id="disagr_use" value="N"><label for="disagr_use">동의하지않습니다.</label>
-            </p>
+                <p>
+                    <input type="radio" name="use" id="agr_use" value="Y"><label for="agr_use">동의합니다.</label>
+                    <input type="radio" name="use" id="disagr_use" value="N"><label for="disagr_use">동의하지않습니다.</label>
+                </p>
+            </div>
 
+            <div>
+                <h2>개인정보 수집 및 이용 동의(필수)</h2>
+                <iframe src="개인정보.html">
 
-            <h2>개인정보 수집 및 이용 동의(필수)</h2>
-            <iframe src="개인정보.html">
+                </iframe>
+                <p>
+                    <input type="radio" name="private" id="agr_private" value="Y"><label
+                        for="agr_private">동의합니다.</label>
+                    <input type="radio" name="private" id="disagr_private" value="N"><label for="disagr_private">동의하지
+                        않습니다.</label>
+                </p>
 
-            </iframe>
-            <p>
-                <input type="radio" name="private" id="agr_private" value="Y"><label for="agr_private">동의합니다.</label>
-                <input type="radio" name="private" id="disagr_private" value="N"><label for="disagr_private">동의하지
-                    않습니다.</label>
-            </p>
-
-            <p>
-                <input type="checkbox" name="all" id="All"><label for="All">모두 동의합니다.</label>
-            </p>
+                <p>
+                    <input type="checkbox" name="all" id="All" value="all_agree"><label for="All">모두 동의합니다.</label>
+                </p>
+            </div>
 
             <input type="reset" value="취소">
             <input type="submit" value="확인">
