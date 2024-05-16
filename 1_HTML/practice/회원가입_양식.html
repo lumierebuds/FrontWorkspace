@@ -46,12 +46,31 @@
             <p>
                 * 생년월일
                 <br>
-                <input type="date" name="" id="">
+                <input type="date" name="birth">
             </p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
+            <p>
+                주소
+                <br>
+                <input type="text" name="address" size="35px">
+            </p>
+            <p>
+                우편번호
+                <br>
+                <input type="text" name="zipcode">
+                <button type="button">우편번호찾기</button>
+                <input type="checkbox" name="isZipcodeSend" id="zipcode"> <label for="zipcode">우편 수신 동의</label>
+
+            </p>
+            <p>
+                이메일
+                <br>
+                <input type="text" name="email" size="35px">
+                <input type="checkbox" name="isEmailSend" id="email"> <label for="email">이메일 수신 동의</label>
+            </p>
+            <p>
+                <input type="reset">
+                <input type="submit" value="가입하기">
+            </p>
 
         </fieldset>
     </form>
