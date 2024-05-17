@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트관련스타일</title>
+    <style>
+        #c {
+            color: red;
+            color: #cc6b80;
+            color: rgb(0, 255, 13);
+            color: rgba(0, 255, 13, 0.999);
+            color: hsl(45, 50%, 50%);
+            color: hsl(45, 50%, 50%, 0.5);
+        }
+
+        #ul2>li:first-child {
+            /* 첫번째 자식*/
+            text-decoration: underline;
+        }
+
+        #ul2>li:nth-child(2) {
+            /* 두번째 자식*/
+            text-decoration: overline;
+        }
+
+        #ul2>li:nth-of-type(3) {
+            /* 세번째 자식 */
+            text-decoration: line-through;
+        }
+
+        #ul2>li:last-child>a {
+            /* 네번째 자식(마지막) */
+            text-decoration: none;
+        }
+
+        .shadow {
+            font-size: 50px;
+            font-weight: 900;
+        }
+
+        #ts1 {
+            color: orange;
+            text-shadow: 5px 5px 5px yellow;
+        }
+
+        #ts2 {
+            color: white;
+            text-shadow: 0px 0px 10px black;
+        }
+
+        #ts3 {
+            text-shadow: 0px 0px 4px gray, 0px -5px 4px yellow,
+                0px -10px 8px orange, 0px -15px 14px orangered,
+                0px -20px 19px red;
+        }
+
+        .wrapper {
+            counter-reset: num;
+
+        }
+
+        /* 가상선택자 사용 ::before */
+        /* p::before p태그의 앞에 값을 추가하기 */
+        .wrapper p::before {
+            counter-increment: num;
+            content: counter(num) " ";
+        }
+
+        /* 모든 요소가 선택될때  */
+        ::selection {
+            background-color: beige;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>텍스트 관련 스타일</h1>
+
+    <h3>color : 텍스트의 색상을 지정</h3>
+    <pre id="c">
+        color : 색상명 / 16진수 / rgb(x,x,x) / rgba(x,x,x,x) / hsl(x,x,x,x) / hsla(x,x,x,x)
+    </pre>
+    <hr>
+
+    <h3>
+        text-decoration : 텍스트에 줄을 긋거나 없앨때 사용
+    </h3>
+
+    <pre>
+        text-decoration : none/underline/overline/line-through;
+    </pre>
+
+    <ul id="ul2">
+        <li>underline</li>
+        <li>overline</li>
+        <li>line-through</li>
+        <li><a href="https://www.naver.com">네이버로 이동</a></li>
+    </ul>
+
+    <hr>
+    <h3>text-transform</h3>
+    <pre>
+        text-transform : uppercase/lowercase/captalize
+    </pre>
+
+    <hr>
+    <h3>text-align : 텍스트를 정렬할때 사용</h3>
+    <pre>
+        text-align : left(기본값)/right/center/justify 
+    </pre>
+
+    <h4>
+        양쪽 정렬
+    </h4>
+    <p style="text-align: justify;">
+        모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 대통령의 선거에 관한 사항은 법률로 정한다. 헌법개정안은 국회가 의결한 후 30일 이내에 국민투표에 붙여
+        국회의원선거권자 과반수의 투표와 투표자 과반수의 찬성을 얻어야 한다.
+
+        언론·출판에 대한 허가나 검열과 집회·결사에 대한 허가는 인정되지 아니한다. 정당의 설립은 자유이며, 복수정당제는 보장된다. 예비비는 총액으로 국회의 의결을 얻어야 한다. 예비비의 지출은 차기국회의
+        승인을 얻어야 한다.
+
+        공공필요에 의한 재산권의 수용·사용 또는 제한 및 그에 대한 보상은 법률로써 하되, 정당한 보상을 지급하여야 한다. 중앙선거관리위원회는 법령의 범위안에서 선거관리·국민투표관리 또는 정당사무에 관한
+        규칙을 제정할 수 있으며, 법률에 저촉되지 아니하는 범위안에서 내부규율에 관한 규칙을 제정할 수 있다.
+        고기먹고싶다.
+    </p>
+
+    <h4>오른쪽정렬</h4>
+
+    <p style="text-align: right;">
+        모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 대통령의 선거에 관한 사항은 법률로 정한다. 헌법개정안은 국회가 의결한 후 30일 이내에 국민투표에 붙여
+        국회의원선거권자 과반수의 투표와 투표자 과반수의 찬성을 얻어야 한다.
+
+        언론·출판에 대한 허가나 검열과 집회·결사에 대한 허가는 인정되지 아니한다. 정당의 설립은 자유이며, 복수정당제는 보장된다. 예비비는 총액으로 국회의 의결을 얻어야 한다. 예비비의 지출은 차기국회의
+        승인을 얻어야 한다.
+
+        공공필요에 의한 재산권의 수용·사용 또는 제한 및 그에 대한 보상은 법률로써 하되, 정당한 보상을 지급하여야 한다. 중앙선거관리위원회는 법령의 범위안에서 선거관리·국민투표관리 또는 정당사무에 관한
+        규칙을 제정할 수 있으며, 법률에 저촉되지 아니하는 범위안에서 내부규율에 관한 규칙을 제정할 수 있다.
+        고기먹고싶다.
+    </p>
+
+    <h4>왼쪽정렬</h4>
+
+    <p style="text-align: left;">
+        모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 대통령의 선거에 관한 사항은 법률로 정한다. 헌법개정안은 국회가 의결한 후 30일 이내에 국민투표에 붙여
+        국회의원선거권자 과반수의 투표와 투표자 과반수의 찬성을 얻어야 한다.
+
+        언론·출판에 대한 허가나 검열과 집회·결사에 대한 허가는 인정되지 아니한다. 정당의 설립은 자유이며, 복수정당제는 보장된다. 예비비는 총액으로 국회의 의결을 얻어야 한다. 예비비의 지출은 차기국회의
+        승인을 얻어야 한다.
+
+        공공필요에 의한 재산권의 수용·사용 또는 제한 및 그에 대한 보상은 법률로써 하되, 정당한 보상을 지급하여야 한다. 중앙선거관리위원회는 법령의 범위안에서 선거관리·국민투표관리 또는 정당사무에 관한
+        규칙을 제정할 수 있으며, 법률에 저촉되지 아니하는 범위안에서 내부규율에 관한 규칙을 제정할 수 있다.
+        고기먹고싶다.
+    </p>
+
+    <hr>
+    <h3>
+        text-shadow : 텍스트에 그림자 효과를 줄때 사용함
+    </h3>
+    <pre>
+        text-shadow : 가로거리, 세로거리, 번짐정도, 색상
+
+        - 번짐정도와 색상은 생략가능
+        - 가로거리와 세로거리가 양수일경우 오른쪽 아래 그림자 생성
+        - 가로거리와 세로거리가 음수일경우 왼쪽 위에 그림자 생성
+        - 번짐정도는 0일경우 그림자색이 진함.
+        - 색상은 글자색을 기본값으로 가진다.
+    </pre>
+
+    <!-- div>span.shadow#ts${HTML}*3 -->
+    <div>
+        <span class="shadow" id="ts1">HTML</span> <br>
+        <span class="shadow" id="ts2">HTML</span> <br>
+        <span class="shadow" id="ts3">HTML</span> <br>
+    </div>
+
+    <hr>
+    <h3>Counter</h3>
+    <div class="wrapper">
+        <p>첫번째 단락</p>
+        <p>두번째 단락</p>
+        <p>세번째 단락</p>
+        <p>네번째 단락</p>
+        <p>다섯번째 단락</p>
+    </div>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+</body>
+
+</html>

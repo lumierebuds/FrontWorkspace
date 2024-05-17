@@ -1,0 +1,133 @@
+.block {
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
+    color: white;
+    display: block;
+}
+
+
+
+.area1 {
+    background-color: red;
+}
+
+.area2 {
+    background-color: orange;
+}
+
+.area3 {
+    background-color: yellow;
+}
+
+.area4 {
+    background-color: green;
+}
+
+.area5 {
+    background-color: blue;
+}
+
+.inline {
+    display: inline;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+/* 내부에 영역을 분할할 요소  */
+.outer-1 {
+    border: 1px solid black;
+    width: 323px;
+    height: 472px;
+}
+
+.red {
+    background-color: red;
+    width: 100%;
+    height: 30%;
+}
+
+.blue {
+    background-color: blue;
+    width: 100%;
+    height: 70%;
+}
+
+.div-1 {
+    height: 50%;
+    width: 50%;
+}
+
+#container-1>div:first-child {
+    background-color: red;
+    height: 30%;
+}
+
+#container-1>div:last-child {
+    background-color: blue;
+    height: 70%;
+}
+
+#outer-2 {
+    border: 1px solid black;
+    width: 323px;
+    height: 472px;
+}
+
+#top {
+    background-color: greenyellow;
+    width: 100%;
+    height: 20%;
+}
+
+#mid {
+    background-color: orangered;
+    width: 100%;
+    height: 30%;
+}
+
+#bottom {
+    background-color: skyblue;
+    width: 100%;
+    height: 50%;
+}
+
+#outer-3 {
+    border: 3px solid orangered;
+    width: 300px;
+    height: 140px;
+}
+
+.div-3 {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+}
+
+
+#outer-3>div:first-child {
+    background-color: pink;
+
+}
+
+#outer-3>div:last-child {
+    background-color: steelblue;
+
+}
+
+.div-4 {
+    border: 3px solid black;
+    height: 100px;
+}
+
+#test4 {
+    background-color: deeppink;
+
+    /* 요소가 투명한 색으로 변환 */
+    /* visibility: hidden; */
+
+    display: none;
+    /* 소스코드에 존재한다. 공간을 차지하지 않음*/
+}

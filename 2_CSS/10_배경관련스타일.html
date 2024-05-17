@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경 관련 스타일</title>
+    <style>
+        body {
+            background-color: skyblue;
+        }
+
+        #div-bg {
+            background-color: white;
+            border: 30px solid blue;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 50%;
+            /* body의 50% 너비*/
+        }
+
+        .div-test {
+            margin: 30px;
+            border: 10px dashed;
+            padding: 20px;
+            background-color: yellow;
+        }
+
+        #div1 {
+            /* border 영역까지 배경색 적용(기본값) */
+            background-clip: border-box;
+        }
+
+        #div2 {
+            /* padding 영역까지만 배경색적용 */
+            background-clip: padding-box;
+        }
+
+        #div3 {
+            /* content 영역까지만 배경색적용 */
+            background-clip: content-box;
+        }
+
+        #id-img {
+            border: 1px solid black;
+            width: 70%;
+            height: 800px;
+
+            background-image: url("../1_HTML/resources/image/bono.jpg");
+            background-repeat: repeat-y;
+            background-position: 50% 50%;
+            background-size: contain;
+            background-attachment: fixed;
+            /* background 하나만 가지고 설정 */
+            background: url("../1_HTML/resources/image/bono.jpg") center center/cover no-repeat fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>배경 관련 스타일</h1>
+    <h3>background-color : 배경색을 지정하고자 할때 사용</h3>
+
+    <div id="div-bg">
+        국가원로자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 대통령은 법률이 정하는 바에 의하여 사면·감형 또는 복권을 명할 수 있다. 제3항의 승인을 얻지 못한 때에는 그 처분 또는 명령은
+        그때부터 효력을 상실한다. 이 경우 그 명령에 의하여 개정 또는 폐지되었던 법률은 그 명령이 승인을 얻지 못한 때부터 당연히 효력을 회복한다.
+
+        통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. 이 헌법공포 당시의 국회의원의 임기는 제1항에 의한 국회의 최초의 집회일 전일까지로 한다.
+    </div>
+
+    <h3>background-clip : 배경을 적용시키고자 하는 범위를 지정</h3>
+    <pre>
+        background-clip : border-box(기본값) / padding-box / content-box;
+
+
+    </pre>
+
+    <!-- .div-test#div${}*3 -->
+    <div class="div-test" id="div1">국가원로자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 대통령은 법률이 정하는 바에 의하여 사면·감형 또는 복권을 명할 수 있다. 제3항의
+        승인을 얻지 못한 때에는 그 처분 또는 명령은
+        그때부터 효력을 상실한다. 이 경우 그 명령에 의하여 개정 또는 폐지되었던 법률은 그 명령이 승인을 얻지 못한 때부터 당연히 효력을 회복한다.
+
+        통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. 이 헌법공포 당시의 국회의원의 임기는 제1항에 의한 국회의 최초의 집회일 전일까지로 한다.</div>
+    <div class="div-test" id="div2">국가원로자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 대통령은 법률이 정하는 바에 의하여 사면·감형 또는 복권을 명할 수 있다. 제3항의
+        승인을 얻지 못한 때에는 그 처분 또는 명령은
+        그때부터 효력을 상실한다. 이 경우 그 명령에 의하여 개정 또는 폐지되었던 법률은 그 명령이 승인을 얻지 못한 때부터 당연히 효력을 회복한다.
+
+        통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. 이 헌법공포 당시의 국회의원의 임기는 제1항에 의한 국회의 최초의 집회일 전일까지로 한다.</div>
+    <div class="div-test" id="div3">국가원로자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 대통령은 법률이 정하는 바에 의하여 사면·감형 또는 복권을 명할 수 있다. 제3항의
+        승인을 얻지 못한 때에는 그 처분 또는 명령은
+        그때부터 효력을 상실한다. 이 경우 그 명령에 의하여 개정 또는 폐지되었던 법률은 그 명령이 승인을 얻지 못한 때부터 당연히 효력을 회복한다.
+
+        통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다. 이 헌법공포 당시의 국회의원의 임기는 제1항에 의한 국회의 최초의 집회일 전일까지로 한다.</div>
+
+    <hr>
+    <h3>배경 이미지 테스트</h3>
+    <pre>
+        선택자{
+            background-image : url(이미지경로);
+            background-repeat : 배경이미지의 x/y축 반복
+            background-position : 배경이미지의 위치 
+            background-size: contain(x/y축중 한쪽이 꽉찰때까지 확대/축소) 
+                             , cover(모두 채울수 있도록 확대/축소)
+            background-attachement : scroll(페이지스크롤시 영역과 함께 스크롤)
+                                     fixed(영역과 별개로 화면에 고정)
+            background-origin : 배경이미지 시작 위치 
+        }
+    </pre>
+
+    <hr>
+    <div id="id-img"></div>
+
+</body>
+
+</html>
