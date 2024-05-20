@@ -1,0 +1,143 @@
+.flex-container {
+    height: 700px;
+    background-color: #ddd;
+
+    display: flex;
+    /* 
+        container에 flex스타일 부여시 각 item들에는 
+        자동으로 원래 부여되어 있었던 margin요소가 모드 사라지고
+        content영역 만큼의 크기만 가지게 된다.
+
+        내부 item에 별도의 width/height가 지정되어있지 않다면 
+        item의 높이/너비는 flex-container의 높이/너비와 같아지게 된다.
+        (flex-container의 정렬 방향에 따라 다름)
+    */
+
+    /* flex-direction  
+       main axis의 방향과 시작위치를 지정하는 속성
+
+    */
+
+    /* 기본값(행방향) */
+    flex-direction: row;
+
+    /* flex-direction: row-reverse; */
+    /* 행방향인데 반대로 나타낸다. */
+
+    /* 열방향(세로) */
+    /* flex-direction: column; */
+
+    /* flex-direction: column-reverse; */
+    /* 열방향인데 반대로 나타낸다. */
+
+    /* 
+        flex-wrap
+        내부 item들을 포장하는 속성 
+        item들이 강제로 "한 줄"에 배치되게 할것인지 
+
+        flex-container가 줄어들면 한줄을 벗어나 "여러줄"로
+        배치할것인지를 지정
+    */
+
+    /* container의 크기를 줄였을때 item 항상 한줄로만 배치 */
+    flex-wrap: nowrap;
+
+    /*  item을 여러줄로 배치 */
+    /*  flex-wrap: wrap; */
+
+    /*  flex-wrap: wrap-reverse; */
+
+    /* 
+        flex-flow
+        flex-direction+flex-wrap을 동시에 적용하는 속성
+    */
+
+    /* 
+        flex-flow: row-reverse wrap;
+        flex-flow: column wrap;
+        height: 500px; 
+    */
+
+    /* 
+        justify-content : 내용을 조정하다
+        - main-axis방향으로 item(내용)의 정렬방법을 조정
+    */
+
+    /* 중심축의 시작지점을 기준으로 정렬 */
+    justify-content: flex-start;
+
+    /* 중심축의 끝 지점을 기준으로 정렬 */
+    justify-content: flex-end;
+
+    /* 중심축의 가운데지점을 기준으로 정렬 */
+    justify-content: center;
+
+    /* item주위에 중심축 방향 양쪽으로 일정한 크기의 
+       공간을 추가하는 방식 */
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+
+    /* item에 중심축 내에서 항상 동일한 각격을 가지게 하는 속성 */
+    justify-content: space-evenly;
+
+    /* space-evenly에서 양 끝단을 flex-container에 붙게함*/
+    justify-content: space-between;
+
+    /* 
+        align-items
+        item들을 cross axis(교차축)방향으로 정렬하는 방법을 
+        지정하는 속성
+
+        item들의 너비 또는 높이를 교차축방향으로 늘려서 
+        flex-container와 같은 크기를 가지도록함
+        조건 : item에 교차축방향의 크기지정 속성이 없어야함.
+    
+    */
+
+    align-items: stretch;
+    /* 기본값 */
+
+    /* 교차축의 시작지점을 기준으로 stretch처럼 늘리진 않고, 
+        content 크기를 유지 */
+
+    align-items: flex-start;
+
+    align-items: flex-end;
+
+    align-items: center;
+
+    /* 
+        item내부 content가 한줄에 배치될 수 있도록 item 요소를
+        교차축으로 움직이는 설정
+    */
+    align-items: baseline;
+}
+
+.item1 {
+    padding: 50px;
+}
+
+.item2 {
+    padding: 70px;
+}
+
+
+#con {
+    height: 450px;
+    width: 450px;
+
+    display: flex;
+    /* 중요한 부분 */
+
+    /* 중심축 기준 가운데 정렬 */
+    justify-content: center;
+
+    /* 교차축 기준 가운데 정렬 */
+    align-items: center;
+}
+
+#center {
+    width: 80px;
+    height: 80px;
+    background-color: red;
+}

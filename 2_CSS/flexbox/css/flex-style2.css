@@ -1,0 +1,33 @@
+.flex-container {
+    height: 75vh;
+    /* vh(Vieport Height) : 현재 화면 높이 */
+
+    display: flex;
+    flex-wrap: wrap;
+
+    /* align-content 
+      item이 포장된 라인을 정렬하는 방법
+      flex-wrap : wrap, wrap-reverse에서만 사용 가능.
+      
+      justify-content의 속성값들을 다 이용 가능
+
+    */
+
+    /* 교차축방향 시작지점으로 포장된 item들을 정렬 */
+    /* align-content: flex-start;
+
+    align-content: flex-end;
+
+    align-content: center;
+
+    align-content: space-arround;
+
+    align-content: space-evenly;
+
+    align-content: space-between; */
+
+    /* align-content,items을 동시에 사용할 수는 없다. */
+
+    align-items: flex-start;
+    align-content: flex-;
+}
