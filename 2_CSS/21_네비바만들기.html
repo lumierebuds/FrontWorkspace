@@ -5,11 +5,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        /* 
+            #nav {
+                box-sizing: border-box;
+            }
+        
+            #navi {
+                display: flex;
+                justify-content: space-evenly;
+        
+            }
+        
+            #navi>li ul>li {
+                display: none
+            }
+        
+            #navi>li:hover ul>li {
+                display: block;
+            }
+        
+            ul {
+                list-style-type: none;
+            }
+        
+            a {
+                text-decoration: none;
+                color: red;
+                font-weight: bold;
+            }
+         */
+    
+        /* 강사님 코드 */
+    
+        div,
+        ul,
+        li,
+        a {
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+    
+        .nav {
+            width: 1000px;
+            height: 40px;
+        }
+    
+        #navi {
+            height: 100%;
+        }
+    
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+    
+        #navi>li {
+            flex-basis: 15%;
+            /* 중심축 기준으로 점유율 지정 */
+            text-align: center;
+            height: 100%;
+    
+        }
+    
+        .nav a {
+            text-decoration: none;
+            color: lightcoral;
+            font-size: 13px;
+            font-weight: 900;
+    
+            /* 앵커태그는 순수 인라인 요소이다. */
+            /* 블락, 인라인 블록 요소로 바꿔서 크기를 지정 */
+            display: block;
+            width: 100%;
+            height: 100%;
+    
+            line-height: 34px;
+        }
+    
+        #navi>li>ul {
+    
+            /* 위에서 부여한 스타일 display : flex  */
+            display: none;
+            flex-direction: column;
+    
+        }
+    
+        #navi a:hover {
+            font-size: 15px;
+            color: crimson;
+        }
+    
+    
+        #navi>li>ul a:hover {
+            font-size: 13px;
+        }
+    
+        #navi>li>ul a {
+            font-size: 10px;
+        }
+    
+        #navi>li>a:hover+ul, #navi>li>ul:hover{
+            display: flex;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div id="nav">
+    <div class="nav">
         <ul id="navi">
             <li><a href="">Java</a></li>
             <li><a href="">Oracle</a></li>
