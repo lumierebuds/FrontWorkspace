@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_유효범위</title>
+</head>
+
+<body>
+
+    <h1>변수의 유효범위</h1>
+    <input type="button" value="전역 | 지역" onclick="test1();">
+    <input type="button" value="scope" onclick="test2();">
+
+    <script>
+        var a = 100; // 전역변수로 등록된 변수 a\
+        // window == global 
+        console.log(window.a);
+        // 함수 밖에 작성된 var 변수는 전역변수로 등록
+        // 전역변수 == global == window. window 속성으로 등록
+
+        d = "gg"; // var 없이 선언된 변수는 함수 내부라고 해도 전역변수로 등록 
+
+        function test1() {
+            // debugger;
+            c = "zzzz"; // var 없이 선언된 변수는 함수 내부라고 해도 전역변수로 등록 
+            var a = '지역변수';
+            var b = 123; // 지역변수 
+            console.log(a, b, this.a);
+
+            var a = true; // 중복선언이 가능하다.
+            console.log(a, b, this.a);
+
+        }
+        test1(); // c 변수 등록 
+        console.log(c);
+
+        /*
+            scope 유효범위
+            var 변수는 자바언어처럼 block scope가 아님.
+            var 변수는 function scope를 가짐. 즉 함수단위로 유효범위(scope)를 가지고 있음.
+
+        */
+
+        function test2() {
+            var x = 10;
+
+            if (true) {
+                var y = 100;
+                // if 문에서 선언된 변수라 할지라도, 함수 영역내에 존재하기 때문에 접근할 수 있다. 
+            }
+            console.log(y); // 100 
+
+            for (var i = 0; i < 10; i++) {
+                console.log(i);
+            }
+            console.log(i);
+
+            if (true) {
+                var k = 123.456;
+            }
+            console.log(k);
+
+        }
+    </script>
+
+    <h1 onclick="test1();">Hoisting</h1>
+
+    <script>
+        debugger;
+        console.log(abcde);
+        var abcde = "안녕"; // var 키워드로 선언된 변수는 hoisting 된다. 
+
+        foo();
+
+        function foo() { // 함수 선언식은 hoisting된다.
+            console.log("foo");
+        }
+
+        // bar(); // bar is not a function (현재 bar undefined)
+        /* 
+            함수 표현식
+        */
+
+        var bar = function () {
+            console.log("bar");
+        }
+        bar();
+
+    </script>
+
+</body>
+
+</html>
