@@ -105,6 +105,415 @@
 
         }
     </script>
+    <h2>Array Methods</h2>
+    <input type="button" value="indexof" onclick="test3()">
+    <input type="button" value="concat" onclick="test4()">
+    <input type="button" value="join" onclick="test5()">
+    <input type="button" value="reverse" onclick="test6()">
+    <input type="button" value="sort" onclick="test7()">
+    <input type="button" value="push|pop" onclick="test8()">
+    <input type="button" value="unshift|shift" onclick="test9()">
+    <input type="button" value="slice" onclick="test10()">
+    <input type="button" value="splice" onclick="test11()">
+    <input type="button" value="실습문제" onclick="test12()">
+    <input type="button" value="forEach" onclick="test13()">
+    <input type="button" value="find|filter|map" onclick="test14()">
+    
+    <hr>
+    <input type="button" value="실습문제" onclick="test15()">
+    <ul id="drink">
+        <li>coke</li>
+        <li>juice</li>
+        <li>coffee</li>
+        <li>beer</li>
+        <li>wine</li>
+    </ul>
+    <hr>
+    <ul id="hobby-list">
+    
+    </ul>
+    
+    <script>
+        var test3 = function () {
+            var arr = ['apple', 'melon', 'banana', 'melon'];
+            console.log(arr.indexOf('melon')); // 1, 배열의 요소가 존재하는 위치 반환
+            console.log(arr.lastIndexOf('melon')); // 3, 배열의 요소가 마지막에 존재하는 위치 반환
+            console.log(arr.indexOf('pig')); // -1 
+            console.log(indexOf(arr, 'apple'));
+            console.log(lastIndexOf(arr, 'melon'));
+        };
+
+        // indexOf 구현
+        function indexOf(arr, word) {
+            var index = -1;
+            for (var item of arr) {
+                ++index;
+                if (item == word) {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
+
+        // lastIndexOf 구현 
+        function lastIndexOf(arr, word) {
+            var index = arr.length;
+
+            for (var i = arr.length - 1; i > -1; i++) {
+                --index;
+                if (word == arr[i]) return index;
+            }
+
+            return -1;
+        }
+
+        function test4() {
+            var arr1 = ['a', 'b', 'c'];
+            var arr2 = [1, 2, 3, 4, 5];
+            var arr3 = arr2.concat(arr1);
+
+            console.log(arr3); // [1, 2, 3, 4, 5, 'a', 'b', 'c']
+            console.log(arr1, arr2); // 원본 배열에 영향을 끼치지 않는다.
+
+        }
+
+        function concat(arr1, arr2) {
+            var arr = [];
+
+            for (var item of arr2) {
+                arr.push(item);
+            }
+            for (var item of arr1) {
+                arr.push(item);
+            }
+
+
+            return arr;
+        }
+
+        var test5 = function () {
+            var arr = [1, 2, 3, 4, 5];
+            // var s = arr.join("-");
+            var s = arr.join(); // , 
+            var s = arr.join(""); // 하나로 연결하고 싶다면
+            console.log(s, typeof (s));
+        };
+
+
+        var test6 = function () {
+            var arr = [1, 2, 3, 4, 5];
+            arr.reverse();
+            console.log(arr);
+        };
+
+        var test7 = function () {
+            var arr = [4, 2, 3, 1, 5, 15];
+            // sort 함수는 내부요소를 문자열로 취급하여 정렬하기 때문에 
+            // 문자열 기준 오름차순 정렬이 기본
+            // arr.sort();
+            console.log(arr);
+
+            // 내림차순 정렬 구현 
+            // arr.sort(function (a, b) {
+            //     if (a > b) return 1
+            //     if (a == b) return 0
+            //     if (a < b) return -1
+            //     // return b - a;
+            // })
+
+            arr.sort();
+            console.log(arr);
+        };
+
+        var test8 = function () {
+            var arr = [];
+
+            var k = 1;
+            while (true) {
+                arr.push(k++);
+                if (k > 100) break;
+
+            }
+
+            //pop : 가장 마지막에 추가된요소를 제거한후, 제거된 요소를 리턴.
+            // console.log(arr.pop());
+            // console.log(arr.pop());
+            console.log(arr);
+            // [100, 99, 98, 98 ... 1]
+            var copy = [];
+
+            while (arr.length > 0) {
+                copy.push(arr.pop());
+            }
+
+            console.log(arr);
+            console.log(copy);
+
+        };
+
+        var test9 = function () {
+            var arr = ['사과', '배', '아보카도'];
+            // unshift : 배열의 0번째 위치에 요소를 추가후 변경된 길이 리턴
+            // shift : 배열의 0번째 위치에서 요소를 제거한후 제거된 요소를 리턴
+            arr.unshift("감자");
+            arr.unshift("양파");
+
+            console.log(arr);
+            console.log(arr.shift());
+
+
+
+        }
+
+        var test10 = function () {
+            var arr = ['a', 'b', 'c', 'd', 'e'];
+            /*
+                slice(시작 인덱스, 종료 인덱스(미포함)) 
+                시작 인덱스로부터 종료 인덱스전까지의 요소를 가져와서 새로운 배열로 반환
+ 
+            */
+            var copy = arr.slice(1, 4); // ['b', 'c', 'd']
+            copy = arr.slice(1);
+            copy = arr.slice();
+
+            console.log(arr, copy);
+        }
+
+        var test11 = function () {
+            /* 
+                요소 추가 & 제거 
+                splice(startIndex, deleteCount, item1, item2);
+                시작인덱스, 시작인덱스부터 삭제할 개수, 추가요소1, 추가요소2
+                
+            
+ 
+            */
+            var arr = ['a', 'b', 'c', 'd', 'e'];
+            var arrData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            arr.splice(1, 2, 'x', ...arrData); // ES6 버전의 전개 연산자로 매개변수 전달
+
+            console.log(arr);
+
+            // arr.splice(1, 1, 'x', 'y', 'z'); // 1번 인덱스부터 1개삭제(포함)
+
+            // arr.splice(2,3, 'k','h'); // 2번 인덱스부터 3개요소 삭제후 k, h 추가 
+
+            // arr.splice(2, 0, 'f', 'r'); // 2번 인덱스부터 f, r 추가 
+
+            // arr.splice(2); // 2번 인덱스 이후 모두 제거;
+
+            // console.log(arr);
+
+
+        }
+
+        /*
+            사용자에게 prompt를 이용해서 사용자의 취미리스트를 입력 받은후 
+            ex) 농구, 수영, 캠핑, 낚시 
+            입력받은 취미를 배열 형태로 담아서 사전순 정렬을 한후 
+            ul#hobby-list의 자식 li태그에 추가하시오. 
+ 
+        */
+        // var test12 = function () {
+        //     var hobbies = prompt('취미를 ,로 구분하여 입력하세요.');
+        //     hobbies = hobbies.split(',');
+        //     hobbies.sort();
+        //     console.log(hobbies);
+
+        //     var lis = document.querySelectorAll('ul#hobby-list li');
+
+        //     var i = 0;
+        //     for (var li of lis) {
+        //         if (hobbies[i] === undefined) continue;
+        //         li.innerHTML = hobbies[i++];
+        //     }
+
+
+        // }
+
+        // 강사님 코드
+
+        var test12 = function () {
+            var hobbies = prompt('취미를 ,로 구분하여 입력하세요.');
+
+            // 농구,수영,캠핑,닊시
+            if (!hobbies) {
+                alert("입력값이 유효하지 않습니다.");
+                return;
+            }
+
+            var arr = hobbies.split(",").sort();
+
+            var ul = document.querySelector("#hobby-list");
+
+            for (var hobby of arr) {
+                ul.innerHTML += `<li>${hobby}</li>`;
+            }
+
+        }
+
+
+        var test13 = function () {
+            /*
+                배열.forEach(함수(element, index, 배열){
+                    // 실행할코드
+                }); 
+ 
+ 
+                foreach는 유사배열(NodeList)도 사용 가능.
+            */
+
+            var arr = [1, 2, 3, 4, 5];
+            var sum = 0;
+            arr.forEach(function (value, index, array) {
+                console.log(value, index, array);
+                sum += value; // 배열의 모든 요소를 더하기
+            })
+            console.log(sum);
+
+            var btnArr = document.querySelectorAll("input[type=button]");
+            var btnValues = [];
+
+            btnArr.forEach(function (value, index, arr) {
+                console.log(index, value);
+                btnValues.push(value.value);
+            })
+            console.log(btnValues);
+        }
+
+
+        var test14 = function () {
+            /* 
+                find : 찾는다. 내가 지정한 조건을 만족하는 1개의 요소를 반환 
+                만족하는게 없다면 null 반환
+                arr.find(콜백함수(v, i, a) {
+                    return true/false가 나오도록 설정
+                })
+ 
+                filter : 내가 지정한 조건을 만족하는 n개의 요소를 배열로 반환
+                만족하는 요소가 1개도 없다면 [] 반환
+                arr.filter(콜백함수(v, i, a) {
+                    return true/false가 나오도록 설정
+                })
+ 
+                map : 요소를 콜백함수로 처리해서 "변환"후 반환
+                arr.map(function(v, i, a) {
+                    return 반환시킬값;
+                }) 
+            */
+            var objArr = [
+                { id: 'wlgnsdl1', name: '지훈1' },
+                { id: 'wlgnsdl2', name: '지훈2' },
+                { id: 'wlgnsdl3', name: '지훈3' },
+                new Object({ id: 'wlgnsdl4', name: '지훈4' })
+            ];
+
+            var findone = objArr.find(function (value, index, array) {
+                if (value.id == 'wlgnsdl1') {
+                    return true;
+                }
+            });
+
+            console.log(findone);
+
+            var filteredArr = objArr.filter(function (value, index) {
+                if (value.id.includes('wlgnsdl')) {
+                    return true;
+                }
+            });
+
+            console.log(filteredArr);
+
+            // filter 함수 구현
+            function filter(originArr, callBack) {
+                var arr = [];
+
+                for (var item of originArr) {
+                    if (callBack(item)) { // 반복문으로 콜백함수를 호출하고 true값일때 arr에 추가
+                        arr.push(item);
+                    }
+                }
+                return arr;
+            }
+
+            var mappedArr = objArr.map(function (value, index) {
+                return { newId: `new_${value.id}` };
+
+            })
+            console.log(mappedArr);
+
+            // map 함수 구현 
+            function map(originArr, callBack) {
+                var arr = [];
+                for (var item of originArr) {
+                    arr.push(callBack(item))
+                }
+                return arr;
+            }
+
+        }
+
+        test(function () {
+            console.log('12345');
+        })
+
+        function test(callbackfn) {
+            console.log(callbackfn, typeof (callbackfn));
+            callbackfn();
+        }
+
+        var test15 = function () {
+            var drink = [];
+            var findOne;
+            var filteredArr;
+            var mappedDrink;
+            var priceArr = [2000, 1600, 4000, 8000, 15000];
+
+            /**
+            * 1) 배열 drink에 #drink태그의 자식li태그 텍스트를 추가. (forEach활용)
+            * ['coke', 'juice', 'coffee', 'beer', 'wine']
+            * 2) 배열 drink에서 'ff'가 들어가는 요소를 선택해서 findOne 반환. (find 활용)
+            *  coffee
+            * 3) 배열 drink에서  'o'가 들어가는 요소들을 선택해서 filteredArr 반환. (filter활용)
+            * ['coke','coffee']
+            * 4) 배열 drink를 활용하여 음료객체 배열을 생성 한후 mappedDrink에 반환(map 활용)     * 
+            * [{"menu": "coke","price": 2000},{"menu": "juice","price": 1600},{"menu": "coffee","price": 4000},
+            *  {"menu": "beer","price": 8000},{"menu": "wine","price": 15000}]
+            */
+
+            // 1. 
+            var drinks = document.querySelectorAll("#drink li");
+            drinks.forEach(function (value, index, array) {
+                drink.push(value.innerText);
+            })
+            console.log(drink);
+
+            // 2. 
+            var findOne = drink.find(function (value, index, array) {
+                if (value.indexOf('ff') !== -1) {
+                    return true;
+                }
+            })
+            console.log(findOne);
+
+            // 3. 
+            var filteredArr = drink.filter(function (value, index, array) {
+                if (value.indexOf('o') !== -1) {
+                    return true;
+                }
+            })
+            console.log(filteredArr);
+
+            // 4. 
+            var mappedDrink = drink.map(function (value, index, array) {
+                return { menu: value, price: priceArr[index] };
+            })
+            console.log(mappedDrink);
+
+        }
+    </script>
+
 </body>
 
 </html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체, 생성자</title>
+</head>
+
+<body>
+    <h1>객체, 생성자</h1>
+    <h2>객체 생성</h2>
+    <input type="button" value="실행" onclick="test1()">
+
+    <script>
+        /*
+            객체(Object); 
+            (속성명 : 속성값)으로 구성된 요소를 관리하는 객체
+            - 속성명 : 식별자(프로퍼티). 문자열로 작성
+            - 속성값 : 모든 타입을 받아줌. 
+        */
+
+        function test1() {
+            // 1) 첫번째 방법(권장)
+            var obj1 = {
+                "name": "홍길동",
+                // 문자열로 인식하기 때문에 "키"에 쌍따옴표를 생략해도된다.
+                age: 33,
+                married: true,
+                hobby: ['축구', '농구'],
+                pets: {
+                    name: '꽃분이',
+                    breed: '말티즈',
+                },
+                123: 456,
+                // 123이 문자열로 형변환된다. 
+                "foo-bar": 123
+                // 특수기호를 쓴 키값을 쓰기 위해선 쌍따옴표를 써야함
+            };
+            console.log(obj1);
+
+            // 2) 두번째 방법 
+            // 객체 내부 속성 접근방법
+
+            // 1. 점표기법(dot notation)
+            var obj2 = new Object();
+            obj2.pname = '말린 망고';
+            obj2.price = 3000;
+            obj2.ingredient = ['mango', 'sugar'];
+
+            // 2. 브래킷 표기법(backet notation, 대괄호 연산자)
+            // 속성명에 특수문자가 들어가거나, 숫자인 경우 
+            // 혹은 동적으로 속성명을 작성해야하는 경우
+            obj2["ty-pe"] = '피클';
+            obj2[0] = "dd";
+            obj2["origin"] = '필리핀';
+
+            console.log(obj2);
+            // const key = prompt('속성으로 사용할 값을 입력하세요.')
+            // // hello, mkm, id,.. ,dd 
+            // obj2[key] = 'dd'; // {hello : dd}
+            // obj2.key = 'dd'; // {key : 'dd'};
+
+            console.log(obj1.age);
+            console.log(obj1.hobby[0]);
+            console.log(obj1["married"]);
+            console.log(obj2["ty-pe"]);
+
+        }
+
+    </script>
+
+    <h2>메소드</h2>
+    <input type="button" value="실행" onclick="test2()">
+
+    <script>
+        /* 
+            객체의 속성값이 function인 경우 메소드라고함
+        */
+        function test2() {
+            var pet = {
+                petName: '구리구리',
+                eat: function (food) {
+                    console.log(`${this.petName}가 ${food}를 먹는다`);
+                    // this : 생성된 객체의 주소값을 참조한다.
+                    // 메서드에 들어갔을때는 this는 해당 객체에 들어감
+                }
+            }
+            console.log(pet);
+            pet.eat("사과");
+        }
+    </script>
+
+    <h2>속성 순회 | 동적 제어</h2>
+    <input type="button" value="실행" onclick="test3();">
+    <input type="button" value="게임종료" onclick="test4();">
+    <input type="button" value="동적제어" onclick="test5();">
+    <input type="button" value="toString" onclick="test6();">
+
+    <script>
+        var game; // 전역변수로 선언한 game
+
+        function test3() {
+            game = {
+                title: 'DIABLO',
+                price: 9900,
+                lang: ["ko", "en", "cn"],
+                run: function () {
+                    console.log(`${this.title}을 실행합니다...`);
+                    // ? 
+                    this["start-time"] = new Date();
+                    // this : run 을 실행했을때 현재 객체(this)에 속성 "start-time"을 추가
+                    // this.startTime = new Date();
+                },
+                shutdown: function () {
+                    console.log(`${this.title}을 종료합니다...`);
+                    // 종료시간 기록
+                    this["end-time"] = new Date();
+                    var duration = (this["end-time"] - this["start-time"]) / 1000 / 60; // 분단위 
+                    duration = Math.floor(duration * 10) / 10;
+                    console.log(`${duration} 분 동안 게임하셨네요.`);
+                }
+            };
+
+            for (var key in game) { // 객체의 키값을 가져오기 위해서 사용하기
+                console.log(key + " : " + game[key]); // 동적으로 바뀌는 키값은 브라켓 표기법 사용
+            }
+
+            game.run();
+            console.log(game["start-time"]);
+        }
+
+
+        var test4 = function () {
+            game && game.shutdown(); // game이 존재할때 종료한다.
+        }
+
+
+        // game 객체에 run 메소드를 실행하면, start-time이라는 속성에 현재시각을 기록 
+        // game객체에 shutdown 메소드를 실행하면, end-time이라는 속성에 종료 시간을 기록 
+
+        var test5 = function () {
+            delete game.price; // 프로퍼티 삭제 
+            console.log(game);
+        }
+
+        var test6 = function () {
+            // toString 메소드 오버라이딩 
+            var notebook = {
+                title: '일기',
+                content: '오늘은 자바스크립트와 좋은 시간을 보냈다.',
+                date: new Date(),
+                toString: () => {
+                    // return `{title = ${this.title}, content = ${this.content}, date = ${this.date}}`
+                    var str = '{';
+                    for (var key in this) { // 현재 객체의 필드를 추가하기 
+                        key !== "toString" && (str += `${key} : ${this[key]}`);
+
+                    }
+                    str += '}';
+                    return str;
+                }
+            };
+
+            console.log(notebook, notebook.toString());
+            console.log(notebook + 1)
+
+        }
+
+
+
+    </script>
+
+    <h2>객체배열</h2>
+    <input type="button" value="실행" onclick="test7()">
+
+    <script>
+
+        var test7 = function () {
+            var pets = [
+                {
+                    name: '꽃분이', breeed: '말티즈', weight: '4.5', bark: function () {
+                        return this.weight > 10 ? '멍멍' : '왈왈';
+                    }
+                },
+                {
+                    name: '아랑', breeed: '비숑', weight: '9.9', bark: function () {
+                        return this.weight > 10 ? '멍멍' : '왈왈';
+                    }
+                },
+                {
+                    name: '콩돌', breeed: '리트리버', weight: '25', bark: function () {
+                        return this.weight > 10 ? '멍멍' : '왈왈';
+                    }
+                }
+            ]
+
+            console.log(pets);
+
+            for (var pet of pets) {
+                console.log(pet);
+                pet.bark2 = function () { // 반복문을 통해 공통된 속성을 추가하기
+                    return this.weight < 5 ? '낑낑' : '왈왈';
+                }
+                console.log(pet);
+                console.log(pet.name + "가 " + pet.bark2() + "짖는다.");
+            }
+        }
+
+    </script>
+
+    <h2>
+        생성자함수 & prototype
+    </h2>
+    <input type="button" value="실행" onclick="test7()">
+    <input type="button" value="실행" onclick="test8()">
+
+    <script>
+        /* 
+            생성자 함수 
+            - 자바스크립트에서 객체지향 프로그래밍을 지원하는 핵심 기능
+            - 클래스를 정의하기 위한 용도의 함수 (new 연산자를 반드시 함께 써야함)
+            - 생성자 함수의 첫글자는 대문자로 작성
+            - 모든 함수는 보이지 않는 prototype이라는 속성을 가지고 있고, 자바스크립트는
+              이 prototype에 부모 객체를 생성하여 상속을 지원
+        */
+
+        function Pet(name, breed, weight) {
+            this.name = name;
+            this.breed = breed;
+            this.weight = weight;
+            // this.bark = function(){
+            //     return this.weight > 10 ? '멍멍' : '왈왈';
+            // }
+        }
+
+        Pet.prototype.bark = function () {
+            return this.weight < 10 ? '뭉탱' : '월월';
+        }
+
+        function Animal(kind) {
+            this.kind = kind;
+            this.bark = function () {
+                return this.weight > 10 ? "멍멍" : "왈왈";
+            }
+        }
+
+        Pet.prototype = new Animal('고양이');
+
+        function test8() {
+            // console.log(Pet, typeof Pet);
+            console.log(Pet.prototype);
+
+            var coco = new Pet('고양이', '코코', '브숏', 5);
+            console.log(coco, coco.__proto__, coco.__proto__ == Pet.prototype);
+            // [[Prototype]] ? 현재 객체를 생성할때 사용한 
+            // Prototype 객체 (부모객체)를 가리킴
+            console.log(coco.bark());
+        }
+
+        /* 
+            - prototype과 __proto__특징 
+            
+            - prototype? 
+              1) 함수객체만 가지고 있는 프로퍼티로 함수 선언(생성)시 함께 생성된다.
+              2) prototype객체에는 객체를 생성할 수 있는 생성자가 포함되어 있다.
+              3) prototype에 추가된 속성/메서드들은 생성된 모든 자식 객체에서 사용가능
+              4) 생성자 함수를 통해 생성된 객체는 함수의 prototype객체의 주소값을 
+                 __proto__속성에 보관하고 있음. 
+            
+            - __proto__
+              1) 객체 내부 프로퍼티인 [[Prototype]]와 동일하며 객체를 생성하는데 사용된 
+                 prototype객체의 주소를 가지고 있는 속성 
+              2) 자바스크립트는 찾고자하는 속성 / 메서드가 현재객체 없는 경우 __proto__을 통해 상위요소
+                로 가서 찾아본다(Object.prototype에 도달하기까지 반복) -> 프로토타입 체인
+              3) __proto__를 통해 상속 관계를 설정하고, 객체간의 속성/메소드를 공유하는 프로토타입
+                체인을 형성할 수 있다.
+        */
+
+
+    </script>
+</body>
+
+</html>

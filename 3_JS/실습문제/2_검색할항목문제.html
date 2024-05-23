@@ -68,22 +68,32 @@
         //날짜 체크시, dateBox 만 보여지게 (체크박스 id : date)
         //작성자 체크시, writerBox 만 보여지게 함 (체크박스 id : writer)
         function showDiv1() {
+            /*
             var radio = document.querySelectorAll("[type=radio]");
             var boxes = document.querySelectorAll(".box");
             for (var i = 0; i < radio.length; i++) {
                 if (radio[i].checked === true) {
                     var checked = radio[i]; // 체크된 라디오버튼의 id값을 확인
                     for (var j = 0; j < boxes.length; j++) {
-                        if (boxes[j].id.indexOf(checked.id) === 0) {
-                            boxes[j].style.display = "block";
-                        } else {
-                            boxes[j].style.display = "none";
-                        }
 
+                        boxes[j].id.indexOf(checked.id) === 0 ? 
+                                (boxes[j].style.display = "block") : 
+                                (boxes[j].style.display = "none");
                     }
                 }
             }
+            */
 
+            var radio = document.querySelector("input[type=radio]:checked");
+            console.log(radio.id);
+            var boxes = document.querySelectorAll(".box");                             
+            for (var j = 0; j < boxes.length; j++) {
+                
+                boxes[j].id.indexOf(radio.id) !== -1 ? 
+                        (boxes[j].style.display = "block") : 
+                        (boxes[j].style.display = "none");
+            }
+            
         }
 
 
