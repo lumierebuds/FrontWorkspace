@@ -38,15 +38,19 @@
 			var pname = document.querySelector("#pname");
 			var price = document.querySelector("input[name=price]");
 
+			var inputs = [buyer, pname, price]; 
 			var area = document.querySelector("#area");
 
-			area.innerHTML = ``;
-
-			if (buyer.value && pname.value && price.value) {
-				area.innerHTML += `구입자 : ${buyer.value}님<br>`;
-				area.innerHTML += `구입상품 : ${pname.value}<br>`;
-				area.innerHTML += `구매가격 : ${price.value}만원<br>`;
+			for(var input of inputs){
+				if(!input.value)
+					return;
 			}
+
+			area.innerHTML = ``;
+			area.innerHTML += `구입자 : ${buyer.value}님<br>`;
+			area.innerHTML += `구입상품 : ${pname.value}<br>`;
+			area.innerHTML += `구매가격 : ${price.value}만원<br>`;
+			
 
 
 

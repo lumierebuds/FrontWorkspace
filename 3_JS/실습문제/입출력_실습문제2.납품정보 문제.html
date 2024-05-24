@@ -54,28 +54,10 @@
 	</form>
 	<script type="text/javascript">
 		function showVal(){
-			var productName = document.querySelector('#productName');
-			var productAmount = document.querySelector('#productAmount');
-			var productLevel = document.querySelector('#productLevel');
-			var message = document.querySelector('#message');
 
-			var notice = 
-				"상품명 :" +productName.value+
-				"\n납품등급 :" +productLevel.value+
-				"\n납품수량 :" +productAmount.value+
-				"\n기타사항 :" +message.value+
-				"\n입력하신 내용이 맞습니까?";
-			
-			var isCorrect = confirm(notice);
+			var pval = document.querySelector('#productLevel').value;
+			document.getElementById('pVal').innerHTML = pval;
 
-			if(!isCorrect){
-				productName.value = "";
-				productLevel.value = "";
-				productAmount.value = "";
-				message.value = "";
-			}
-
-			
 		}
 
 		function printProduct(){
@@ -84,14 +66,25 @@
 			var productAmount = document.querySelector('#productAmount');
 			var productLevel = document.querySelector('#productLevel');
 			var message = document.querySelector('#message');
-
-			var inputs = [productName, productAmount, productLevel, message];
 			var result = document.querySelector('#result');
 
-			for(var input of inputs){
-				if(!input.value){
-					return;
+			var inputs = [productName, productAmount, productLevel, message];
+
+			var notice = 
+				"상품명 :" +productName.value+
+				"\n납품등급 :" +productLevel.value+
+				"\n납품수량 :" +productAmount.value+
+				"\n기타사항 :" +message.value+
+				"\n입력하신 내용이 맞습니까?";
+			
+				
+			var isCorrect = confirm(notice);
+
+			if(!isCorrect){
+				for(var input of inputs){
+					input.value = '';
 				}
+				return;
 			}
 
 			result.innerHTML = "";
@@ -99,8 +92,6 @@
 			result.innerHTML += "<br>납품등급 : "+productLevel.value
 			result.innerHTML += "<br>납품수량 : "+productAmount.value
 			result.innerHTML += "<br>기타사항 : "+message.value
-
-
 		}
   </script>
 </body>

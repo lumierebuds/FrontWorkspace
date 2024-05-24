@@ -499,9 +499,10 @@
 
             // 3. 
             var filteredArr = drink.filter(function (value, index, array) {
-                if (value.indexOf('o') !== -1) {
-                    return true;
-                }
+                return value.indexOf('o') > -1; 
+                // if (value.indexOf('o') !== -1) {
+                //     return true;
+                // }
             })
             console.log(filteredArr);
 
