@@ -5,27 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        input, textarea{
+        input,
+        textarea {
             width: 100%;
             resize: none;
             box-sizing: border-box;
         }
-        dl{
+
+        dl {
             border: 1px solid black;
         }
-        ul , li{
+
+        ul,
+        li {
             list-style: none;
             margin: 0;
             padding: 0;
         }
-        li{
+
+        li {
             border: 1px solid black;
         }
-        h5{
+
+        h5 {
             text-align: center;
             color: maroon;
         }
-        p{
+
+        p {
             text-align: justify;
             border: 1px;
             color: blueviolet;
@@ -33,7 +40,7 @@
     </style>
 </head>
 <body>
-    
+
     <fieldset>
         <legend>게시글 생성</legend>
         <div>
@@ -41,7 +48,7 @@
                 게시글 제목 : <input type="text" name="title">
             </header>
             <section>
-                게시글 내용 : <textarea name="content"  cols="30" rows="10"></textarea>
+                게시글 내용 : <textarea name="content" cols="30" rows="10"></textarea>
             </section>
             <footer style="text-align: center;">
                 <input type="button" value="등록" onclick="insertBoard();">
@@ -58,18 +65,56 @@
             1) 게시글 제목과, 내용은 1글자 이상 작성해야 등록되도록 할것
             2) 등록 완료후 작성한 내용을 비워줄것
         */
-        function insertBoard(){
-           
+        function insertBoard() {
+            var title = document.querySelector("[name=title]");
+            var content = document.querySelector("[name=content]");
+
+            if (!(title && content)) {
+                alert("제목과 내용을 입력해주세요");
+
+            }
+            else {
+                var ul = document.querySelector("#boardList");
+                var li = document.createElement("li");
+                var head = document.createElement("h5");
+                var cont = document.createElement("p");
+
+                head.innerText = title.value;
+                cont.innerText = content.value;
+
+                li.appendChild(head);
+                li.appendChild(cont);
+
+                ul.appendChild(li);
+
+            }
+            console.log(title, content);
+
+            title.value = "";
+            content.value = "";
         }
-        
+
         /* 
             게시글 검색기능. 게시글에 내가 입력한 내용이 포함된 게시글만 필터링 시켜서 보여주는 기능.
             검색내용을 비워둔후 재검색 눌렀을때는 전체 게시글목록이 나와야함.
         */
-        function searchTitle(){
-          
+        function searchTitle() {
+            var keyword = document.querySelector("[name=search]").value;
+            var lists = document.querySelectorAll("#boardList li");
+            var boards = document.querySelectorAll("#boardList li> h5");
+            for (var i = 0; i < lists.length; i++) {
+
+                if (keyword) {
+                    boards[i].innerText.indexOf(keyword) != -1 ?
+                        (lists[i].style.display = "block") :
+                        (lists[i].style.display = "none")
+                }
+                else {
+                    lists[i].style.display = "block";
+                }
+            }
         }
-    
+
     </script>
 
     <h1>게시글 목록</h1>
@@ -83,6 +128,6 @@
             <p>게시글내용입니다.</p>
         </li>
     </ul>
-    
+
 </body>
 </html>
