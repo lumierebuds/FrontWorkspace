@@ -15,20 +15,7 @@
 
 <body>
   <h1>@실습문제_이벤트</h1>
-  <!--  
-    #btn-generate을 클릭하면, 
-    아래데이터를 javascript객체로 먼저 만들고, 배열로 관리한다.
-    배열을 순회하면서, button태그를 동적으로 생성한다.
-    생성된 버튼태그를 클릭하면, 각각의 url로 페이지이동해야한다.
 
-    버튼 value       이동할 url
-    ---------------------------------
-    네이버            https://www.naver.com
-    구글              https://www.google.com
-    KH                https://www.iei.or.kr
-    와삼              https://www.w3schools.com
-
-  -->
   <button type="button" id="btn-generate">버튼생성</button>
   <div class="btn-wrapper">
     <button type="button" data-url='https://www.naver.com'>네이버</button>&nbsp;
@@ -36,16 +23,107 @@
     <button type="button" data-url='https://www.iei.or.kr'>KH</button>&nbsp;
     <button type="button" data-url='https://www.w3schools.com'>와삼</button>
   </div>
-  <script>
-    var generate = document.querySelector("#btn-generate");
 
+    <!--  
+      #btn-generate을 클릭하면, 
+      아래데이터를 javascript객체로 먼저 만들고, 배열로 관리한다.
+      배열을 순회하면서, button태그를 동적으로 생성한다.
+      생성된 버튼태그를 클릭하면, 각각의 url로 페이지이동해야한다.
+
+      버튼 value       이동할 url
+      ---------------------------------
+      네이버            https://www.naver.com
+      구글              https://www.google.com
+      KH                https://www.iei.or.kr
+      와삼              https://www.w3schools.com
+
+    -->
+
+  <script>
+    
+    var buttons = document.querySelectorAll(".btn-wrapper button");
+    var wrapper = document.querySelector(".btn-wrapper");
+    var generate = document.querySelector("#btn-generate");
+    var arr = []; 
+
+    generate.addEventListener("click", function () {
+        if(arr.length >= 4){
+          return;
+        }
+        for(button of buttons){
+          arr.push(new Button(button.innerText, button.dataset.url));
+        } 
+        
+        
+        // for(let item of arr){
+        //   var btn = document.createElement("button");
+        //   btn.innerText = item.value;
+        //   var url = item.url;
+        //   btn.onclick = function(){
+        //     item.goTo(url);
+        //   }
+
+        //   wrapper.appendChild(btn);
+        // }
+
+        arr.forEach(function (item){
+          var btn = document.createElement("button");
+          btn.innerText = item.value;
+          var url = item.url;
+          btn.onclick = function(){
+            item.goTo(url);
+          }
+
+          wrapper.appendChild(btn);
+        })
+
+      
+      });
+    
     class Button {
-      constructor(value, url) {
+      constructor(value, url){
         this.value = value;
         this.url = url;
       }
+      goTo(url){
+        debugger;
+        open(this.url, "_self");
+      }
+    } 
+    // [강사님코드]
+    /*
+    function btnClickEl() {
+      var btns = [
+              new MyButton('네이버', 'https://www.naver.com'),
+              new MyButton('구글', 'https://www.google.com'),
+              new MyButton('KH', 'https://www.kh.com'),
+              new MyButton('와삼', 'https://www.w3schools.com'),
+            ];
+      var btnWrapper = document.querySelector(".btn-wrapper");
+      btns.forEach(function(btn, i){
+        var html = `<button onclick='goTo("${btn.url}")'}>${btn.name}</button>&nbsp` // 추가할 html 요소를 만들어준다. 
+        btnWrapper.innerHTML += html; // 계속해서 추가할것이기 때문에 복합대입연산자 사용
+      });
+    };
+
+    // 이벤트를 여러번 생성하고 지우는것은 리액트와 같은 프론트엔드 프레임워크에서 중요하다. 
+    document.querySelector("#btn-generate").addEventListener("click", btnClickEl);
+    document.querySelector("#btn-generate").removeEventListener("click", btnClickEl);
+
+
+    
+
+    function goTo(url){
+      location.href = url; // 현재 페이지의 url을 변경해서 사이트를 연다. (BOM);
     }
 
+    class MyButton {
+      constructor(name, url){
+        this.name = name;
+        this.url = url;
+      }
+    }
+    */
   </script>
 
 </body>

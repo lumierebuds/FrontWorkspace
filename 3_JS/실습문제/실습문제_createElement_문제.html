@@ -57,7 +57,7 @@
     </fieldset>
 
     <script>
-        /* 
+          /* 
             등록버튼 클릭시 작성한 게시글 제목과 게시글 내용을 ul태그안에 
             자식 안에 추가할것. 추가시 동적 node생성구문(createElement)를 활용할 것.
 
@@ -65,34 +65,64 @@
             1) 게시글 제목과, 내용은 1글자 이상 작성해야 등록되도록 할것
             2) 등록 완료후 작성한 내용을 비워줄것
         */
-        function insertBoard() {
-            var title = document.querySelector("[name=title]");
-            var content = document.querySelector("[name=content]");
-
-            if (!(title && content)) {
-                alert("제목과 내용을 입력해주세요");
-
+        /* 리액트 방식 */
+        var boardList = [
+            {
+                title : '1번 게시글',
+                content : '글내용'
             }
-            else {
-                var ul = document.querySelector("#boardList");
-                var li = document.createElement("li");
-                var head = document.createElement("h5");
-                var cont = document.createElement("p");
+        ];
+        function render(){
+            var ul = document.querySelector('#boardList');
+            for(var board of boardList){
+                var li = document.createElement('li');//<li></li>
 
-                head.innerText = title.value;
-                cont.innerText = content.value;
+                var h5 = document.createElement('h5');
+                h5.innerText = board.title;
 
-                li.appendChild(head);
-                li.appendChild(cont);
+                var p  = document.createElement('p');
+                p.innerText = board.content;
 
+                li.append(h5, p);
                 ul.appendChild(li);
-
             }
-            console.log(title, content);
+        };
 
-            title.value = "";
-            content.value = "";
+        window.onload = function(){
+            (function(){
+                render()
+            })();
         }
+
+        function insertBoard(){
+           var title = document.querySelector('input[name=title]');
+           var content = document.querySelector('textarea[name=content]');
+           //var boardList = document.querySelector('#boardList');
+
+           if(!title.value || !content.value){
+               return;
+           }
+           var board = {
+            title : title.value,
+            content : content.value
+           }
+
+           boardList.push(board);
+           render();
+        //    var li = document.createElement('li');//<li></li>
+        //    var h5 = document.createElement('h5');
+        //    var p  = document.createElement('p');
+
+        //    h5.innerText = title.value;
+        //    p.innerText = content.value;
+        //    li.append(h5 , p);
+
+        //    boardList.appendChild(li);
+
+           title.value = "";
+           content.value="";
+        }
+        
 
         /* 
             게시글 검색기능. 게시글에 내가 입력한 내용이 포함된 게시글만 필터링 시켜서 보여주는 기능.
@@ -103,17 +133,30 @@
             var lists = document.querySelectorAll("#boardList li");
             var boards = document.querySelectorAll("#boardList li> h5");
             for (var i = 0; i < lists.length; i++) {
-
                 if (keyword) {
-                    boards[i].innerText.indexOf(keyword) != -1 ?
-                        (lists[i].style.display = "block") :
-                        (lists[i].style.display = "none")
-                }
+                    lists[i].style.display = boards[i].innerText.indexOf(keyword) != -1 ?
+                        "block" :
+                        "none";
+                    }
                 else {
                     lists[i].style.display = "block";
                 }
             }
         }
+
+        // [강사님코드]
+        function searchTitle(){
+            var search = document.querySelector("input[name=search]");
+            var tLists = document.querySelectorAll('#boardList>li>h5');
+            var lists = document.querySelectorAll('#boardList>li');
+            
+            for(var i=0; i<tLists.length; i++){
+                tLists[i].innerHTML.indexOf(search.value) < 0 ? lists[i].style.display = 'none' : lists[i].style.display = 'block';
+                !search.value && (lists[i].style.display = 'block');
+            }
+        } 
+        
+
 
     </script>
 
