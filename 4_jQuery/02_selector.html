@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_selector</title>
+    <!-- 2. CDN 인터넷 상의 서버에서 다운로드 받는 방식 -->
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <h1>Selector</h1>
+    <ul>
+        <!-- li.foo#bar${안녕$}*5 -->
+        <li class="foo" id="bar1">안녕1</li>
+        <li class="foo" id="bar2">안녕2</li>
+        <li class="foo" id="bar3">안녕3</li>
+        <li class="foo" id="bar4">안녕4</li>
+        <li class="foo" id="bar5">안녕5</li>
+    </ul>
+    <input type="button" value="tag" onclick = "test1()">
+    <script>
+        function test1(){
+            var $lis = $("ul > li"); // 항상 querySelectorAll
+            console.log($lis); // jq 객체에 해당한다. 
+            $lis.css("color","springgreen");
+
+            // 클래스 명에 해당하는 요소를 찾아 font-size를 조절할 수 있다.
+            $('.foo').css('font-size','2em');
+
+            var $bar1 = $("#bar1");
+            var $bar1_; 
+
+            console.log($bar1);
+            console.log($bar1_ = $bar1.css('text-decoration', 'underline'));
+            console.log($bar1_ == $bar1);
+
+            $("#bar2").css('font-size', '3em')
+                    .css('background-color',  'magenta')
+                    .css('color' ,'white');
+
+        }
+    </script>
+
+    <hr>
+    <fieldset>
+        <legend>메뉴</legend>
+        <input type="checkbox" name="menu" id="menu1" value="햄버거"><label for="menu1">햄버거</label>
+        <input type="checkbox" name="menu" id="menu2" value="피자"><label for="menu2">피자</label>
+        <input type="checkbox" name="menu" id="menu3" value="핫도그"><label for="menu3">핫도그</label>
+        <input type="checkbox" id="menuAll"><label for="menuAll">전체선택/해제</label>
+
+        <input type="button" value="get | set" id="checkGetSet">
+        <input type="button" value="확인" id="checkValue">
+
+    </fieldset>
+    <script>
+        // #checkGetSet을 눌렀을때 선택된 값을 출력
+        $("#checkGetSet").click(function (){
+            // $("[name=menu]").each(function(index, elem){ // jQuery 객체배열 내부로 반복문을 실행
+            //     console.log(index, elem); // elem 순수 js element
+            //     // elem.css("color", "red"); // jq 객체가 아니기 때문에 메서드 사용불가
+            //     // console.dir(elem); // elem.checked
+            //     var $elem = $(elem); // jq객체로 형변환
+            //     if($elem.prop("checked")) console.log($elem.val());
+
+            // });
+
+            $("input[name=menu]:checked").each(function(index, elem){
+            console.log(elem.value);
+            console.log($(elem).val());
+            });
+        });
+
+        /* 
+            jquery에서의 get/set
+            항상 복수개의 요소를 가진 jquery 객체 생성 
+
+            - getter : 첫번째 인자의 속성값에 적용
+            - setter : 모든 인자의 속성값에 적용 
+
+        */
+
+        $("#checkGetSet").click(function(){
+            console.log($("[name=menu]").prop("checked")); // getter : 한개 요소값 (햄버거만) 
+            console.log($("[name=menu]").prop("checked", true)); // setter : 모든 요소의 속성에 적용
+        });
+
+        $("#menuAll").change(function(e){
+            $("[name=menu]").prop("checked", this.checked); // 현재 선택한 #menuAll의 checked 값으로 넣음
+        });
+        
+        $("[name=menu]").change(function(e){
+            console.log(e);
+            console.log(e.target);
+            console.log(this);
+
+            // $(e.target).prop("checked", false);
+            // $(this).prop("checked", false);
+            // console.log($(this).attr("checked", true)); // checked 속성을 추가한다.
+            // console.log($(this).attr("checked"));
+        });
+    
+    </script>
+
+    <img src="../1_HTML//resources/image/flower.jpg" style="margin: 50px 20px; width: 300px;" alt="">
+
+    <script>
+        /* 
+            attr 
+            html 태그의 속성을 가져오거나 수정할때 사용하는 함수
+        */
+
+        $("img").click(function(){
+            console.log($(this).attr('src')); // getter 방식으로 확인
+            $(this).attr('src','../1_HTML//resources/image/flower2.jpg'); // setter로 수정
+        })
+    </script>
+
+    <!-- .wrapper>p{안녕$}*10 -->
+    <div class="wrapper">
+        <p>안녕1</p>
+        <p>안녕2</p>
+        <p>안녕3</p>
+        <p>안녕4</p>
+        <p>안녕5</p>
+        <p>안녕6</p>
+        <p><a href="#">안녕7</a></p>
+        <p>안녕8</p>
+        <p>안녕9</p>
+        <p>안녕10</p>
+    </div>
+    <input type="button" value=":eq()" onclick="test2();">
+    <input type="button" value=":gt() :lt()" onclick="test3();">
+    <input type="button" value=":contains()" onclick="test4();">
+    <input type="button" value=":has()" onclick="test5();">
+    <input type="button" value=":not()" onclick="test6();">
+
+    <br><br><br><br><br><br><br><br>
+    <script>
+        /* 
+            :eq(index) 
+        */
+        function test2(){
+            $(".wrapper p:eq(3)").css('font-size','2em')
+                                 .css('color','deeppink'); 
+            // .wrapper 클래스의 하위요소 3번째 p태그 
+            // (0부터 인덱스를 시작하기 때문에 정확힌 4번째)
+        }    
+
+        /* 
+            :gt(index) : 해당 인덱스의 다음 요소들 (포함x)
+            :lt(index) : 해당 인덱스의 전 요소들 
+        */ 
+       function test3() {
+            $(".wrapper p:gt(3)").css({ // 3번 인덱스 이후 
+                "font-size": "2em",
+                "color":"deeppink"
+            });
+
+            $(".wrapper p:lt(3)").css({ // 3번 인덱스 전
+                "font-size": "2em",
+                "color":"green"
+            });
+       }
+
+
+       /* 
+         :contains("문자열")
+         특정 문자열(innerText)을 가진 태그를 조회
+       */
+
+       function test4(){
+            $(".wrapper p:contains('안녕8')")
+                .css('text-decoration', 'line-through');
+       }
+
+       /* 
+        :has(selector)
+       */
+      function test5(){
+            $(".wrapper p:has(a)")
+                .css('background-color', 'lightgray');
+      }
+
+      /* 
+        :not(selecotr)
+      */
+
+      function test6(){
+        $(".wrapper p:not(:first-child)")
+            .css('color','green');
+      }
+
+    </script>
+</body>
+</html>

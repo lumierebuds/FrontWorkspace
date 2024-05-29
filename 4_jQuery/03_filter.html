@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03_filter</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+  </head>
+  <body>
+    <h1>Filter</h1>
+    <input type="button" value="filter" onclick="test1()" />
+    <input type="button" value="first | last | eq | not" onclick="test2()" />
+    <!-- .wrapper>p.test{안녕$}*7 -->
+    <div class="wrapper">
+      <p class="test">안녕11</p>
+      <p class="test">안녕22</p>
+      <p class="test">안녕33</p>
+      <p class="test">안녕44</p>
+      <p class="test">안녕55</p>
+      <p class="test">안녕63</p>
+      <p class="test">안녕77</p>
+      <p class="test">안녕8</p>
+      <p class="test">안녕9</p>
+      <p class="test">안녕10</p>
+      <p>하이</p>
+    </div>
+    <script>
+      function test1() {
+        // filter(selector)
+        // 현재 선택된 jQuery 객체의 요소들중에서 selector에 부합되는 요소만 추려서
+        // 다시 jQuery 객체로 반환
+        var $p = $(".wrapper > p");
+        console.log($p);
+        console.log($p.filter(".test")); // .test 클래스에 해당하는 것만 가져올 수 있다.
+
+        $p.filter(":even"); // 짝수 인덱스 요소만 반환 0, 2, 4, 6
+        // $p.filter(":odd").css('color','deeppink');
+
+        // $p.filter(function(index, p) {
+        //     console.log(index, p, index%2 ==0);
+        //     return index % 2 == 0; // 짝수 인덱스의 요소만 반환하게 함
+        // }).css("color", "deeppink"); // 0, 2, 4, 6, ...
+
+        // p태그의 textContent중 숫자만 추려서 가져온 후,
+        // 짝수라면 글자색 deeppink로 바꾸기
+
+        $p.filter(function (index, p) {
+          console.log(
+            $(p).prop("innerText"),
+            $(p).text(),
+            p.innerText,
+            p.textContent
+          );
+          var text = $(p).text();
+
+          // var num = text.match(/\d{1,}/g); // 정규식을 이용해서 숫자값만 추려서 가져옴
+          // console.log(num);
+
+          var num = text.replace(/[^\d]/g, ""); // 정규식을 이용해서 숫자가 아닌값들을 공백문자로 변경
+          console.log(num);
+
+          return num % 2 == 0;
+        }).css("color", "deeppink");
+      }
+
+      function test2() {
+        var $p = $(".wrapper p");
+        console.log($p.first().css("color")); // jquery 객체 반환
+        console.log($p[0].style.color); // p태그원본
+
+        // first
+        // last
+        // eq
+        // not
+        $p.not(".test").css("font-size", "2em");
+      }
+    </script>
+  </body>
+</html>

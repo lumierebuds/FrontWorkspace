@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>event</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <style>
+      .outer {
+        width: 200px;
+        height: 200px;
+        background-color: orange;
+        padding: 50px;
+        margin: 20px auto;
+      }
+      .inner {
+        width: 100%;
+        height: 100%;
+        background-color: red;
+      }
+      .border {
+        border: 3px solid #000;
+      }
+      .box {
+        width: 300px;
+        height: 300px;
+        background-color: teal;
+        color: white;
+        text-align: center;
+        line-height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Event</h1>
+    <h2>mouseover & mouseout | mouseenter & mouseleave | hover</h2>
+    <div class="outer">
+      <div class="inner"></div>
+    </div>
+    <script>
+      /* 
+            자식요소에 접근시에도 이벤트 발생.
+            자식요소에서 현재 요소로 재진입시에도 이벤트 발생
+        */
+      // $(".outer")
+      //     .mouseover(function () {
+      //         console.log("mouseover");
+      //     })
+      //     .mouseout(function(){
+      //         console.log("mouseout");
+      //     })
+
+      /* 
+            자식요소로 접근시에는 이벤트가 발생하지 않음 
+        */
+      // $(".outer")
+      //     .mouseenter(function (e) {
+      //         console.log(e.target.className,"mouseover");
+      //     })
+      //     .mouseleave(function(e){
+      //         console.log(e.target.className,"mouseout");
+      //     })
+
+      $(".outer").hover(
+        function () {
+          console.log("hover : mouseenter");
+          $(this).addClass("border");
+        },
+        function () {
+          console.log("hover : mouseleave");
+          $(this).removeClass("border");
+        }
+      );
+    </script>
+
+    <h2>key Event</h2>
+
+    <!-- action에 javascript:를 붙여주면 자바스크립트 코드를 실행할 수 있다. -->
+    <form action="javascript:alert('폼 제출 성공');" id="memoFrm">
+      <fieldset>
+        <legend>메모</legend>
+        <p><span id="counter">0</span>/30</p>
+        <textarea name="memo" id="memo" cols="30" rows="10"></textarea>
+        <input type="submit" value="제출" />
+      </fieldset>
+    </form>
+
+    <script>
+      var max = 30;
+      // form태그가 제출될때 이벤트는 submit 메서드에 해당한다.
+      $("#memoFrm").submit(function (e) {
+        var value = $("memo").val(); // 입력한 문자열이 반환된다.
+        if (value.length >= max) {
+          return false;
+        }
+      });
+
+      // keyup으로 textarea의 값이 입력될때마다 길이를 확인
+      $("#memo").keyup(function () {
+        var $textarea = $(this);
+        var value = $textarea.val();
+        var len = value.length;
+
+        var $counter = $("#counter");
+        $counter.text(len);
+        if (len > max) {
+          $counter.css("color", "red"); // 글자가 30글자를 넘어서 넣어지면 색깔을 빨간색으로
+          var text = $textarea.text();
+          $textarea.text(text.substring(0, 30));
+        } else {
+          $counter.css("color", "#000");
+        }
+      });
+    </script>
+
+    <h2>on | off</h2>
+    <div class="box"></div>
+    <input type="button" value="off" onclick="$('.box').off('click')" />
+    <script>
+      // $('.box')
+      // .on('click',function(){
+      //     $(this).html('<h1>하이</h1>');
+      // })
+      // .on('mouseleave', function(e){
+      //     $(this).html("");
+      // });
+
+      $(".box")
+        .click(function () {
+          $(this).html("<h1>하이</h1>");
+        })
+        .click(function () {
+          $(this).css("border", "1px solid black");
+        })
+        .on("mouseleave", function (e) {
+          $(this).html("").css("border", "2px solid red");
+        });
+    </script>
+
+    <h2>bubbling을 통한 event handling</h2>
+    <div class="wrap">
+      <h2><span>안녕</span></h2>
+    </div>
+    <script>
+      /* 
+            자식요소에서 발생한 이벤트를 부모요소에서 핸들링
+            기존요소 / 새로추가된 요소 모두 작동한다. 
+
+            on(event, '선택자', handler);
+
+        */
+      $(".wrap").on("click", "span", function (e) {
+        console.log(this);
+        $(".wrap").append("<h2><span>안녕</span></h2>");
+      });
+    </script>
+
+    <h2>trigger</h2>
+    <div class="trg">
+      <h1>0</h1>
+    </div>
+    <input type="button" value="카운터 증가" onclick="test1();" />
+
+    <script>
+    
+      function test1(){
+        $(".trg").trigger('click'); // 이벤트를 연쇄적으로 실행 
+        // $('.trg').click();
+        // $('.trg').select();
+      }
+      
+      // IIEE 함수로 트리거
+      (function () {
+        var cnt = 0;
+        $(".trg").on("click", function (e) {
+          $(this).children("h1").text(++cnt);
+        });
+      })();
+    </script>
+  </body>
+</html>
