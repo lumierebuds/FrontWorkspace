@@ -1,64 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>jQuery_04_event_실습</title>
     <!--최신 jquery cdn 사용하기-->
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>  
-</head>
-<body>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  </head>
+  <body>
+    <!-- 
+        event
+        1. 선택한 select박스의 값을 #selNum에 추가
+        2. 선택한 행에 대한 정보를 #s1 , #s2, #s3, #s4 
+        번호, 제목, 조회수, 작성일자를 추가
+        3. 2번기능에 추가로 선택된 행에 배경색깔을 red로 변경
+     -->
+
     <h2>Event 1</h2>
+
     <script>
-        
+      // jQuery 함수를 사용하기 위해서 표현식을 먼저 작성해주는게 좋다
+      // 이러면 script 태그가 위에있든 아래에 있든 상관없다.
+      $(function () {
+        var $select = $("[name=number]");
+        $select.on("change", function () {
+          var $selected = $("option").filter(":selected");
+          $("#selNum").text($selected.text());
+        });
+      });
     </script>
-    
+
     <select name="number">
-        <option value="">== 선택 == </option>
-        <option value="1">1번</option>
-        <option value="2">2번</option>
-        <option value="3">3번</option>
-        <option value="4">4번</option>
+      <option value="">== 선택 ==</option>
+      <option value="1">1번</option>
+      <option value="2">2번</option>
+      <option value="3">3번</option>
+      <option value="4">4번</option>
     </select>
     <span id="selNum"></span>
 
-    <hr>
+    <hr />
 
     <h2>Event 2</h2>
     <script>
-    
-    </script>
-    
-    <table id="event2" border="1">
-        <tr><th>번호</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
-        <tr><td>3</td><td>3번제목</td><td>0</td><td>11-07-13</td></tr>
-        <tr><td>2</td><td>2번제목</td><td>0</td><td>11-07-12</td></tr>
-        <tr><td>1</td><td>1번제목</td><td>0</td><td>11-07-11</td></tr>
-    </table>
-        선택된 행 :
-        <span id="s1"></span> / 
-        <span id="s2"></span> / 
-        <span id="s3"></span> / 
-        <span id="s4"></span>
+      $(function () {
+        $("#event2 tr:eq(0)")
+          .nextAll()
+          .each(function (index, elem) {
+            $(elem).click(function () {
+              var $td = $(elem).children();
+              $td.each(function (i, e) {
+                $(`span[id=s${i + 1}]`).text($(e).text());
+              });
+            });
+          });
 
-    <hr>
-    
+        // [강사님 코드]
+        // $("#event2 tr:eq(0)").nextAll().on("click", function(e){
+        //     var $selectedArr = $(this).children().map(function(i,e){
+        //         return $(e).text();
+        //     })
+        //     console.log($selectedArr);
+
+        //     // $selecteArr.each(콜백함수)
+        //     $.each($selectedArr, function(index, element){
+        //         $("span#s"+(index+1)).text(element);
+        //     })
+        // })
+      });
+    </script>
+
+    <table id="event2" border="1">
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>조회수</th>
+        <th>작성일자</th>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>3번제목</td>
+        <td>0</td>
+        <td>11-07-13</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>2번제목</td>
+        <td>0</td>
+        <td>11-07-12</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1번제목</td>
+        <td>0</td>
+        <td>11-07-11</td>
+      </tr>
+    </table>
+    선택된 행 :
+    <span id="s1"></span> / <span id="s2"></span> / <span id="s3"></span> /
+    <span id="s4"></span>
+
+    <hr />
+
     <h2>Event 3</h2>
     <script>
-    
+      $(function () {
+        $("#event3").on("click", "tr", function (e) {
+          var $this = $(this);
+          // var tr0 = $("table#event3 tr:eq(0)");
+          // console.log($this == tr0 ); // false
+          if ($this.is("table#event3 tr:eq(0)")) return;
+          console.log($this);
+
+          // tr -> td(4)
+          $this.children().each(function (index, item) {
+            $("span#s" + (5 + index)).html(item.innerHTML);
+          });
+
+          // css 처리
+          $("#event3 tr")
+            .css("backgroundColor", "white")
+            .filter($this)
+            .css("backgroundColor", "red");
+
+          //   $this.css("backgroundColor", "red");
+        });
+      });
     </script>
 
     <table id="event3" border="1">
-        <tr><th>번호</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
-        <tr><td>3</td><td>3번제목</td><td>0</td><td>11-07-13</td></tr>
-        <tr><td>2</td><td>2번제목</td><td>0</td><td>11-07-12</td></tr>
-        <tr><td>1</td><td>1번제목</td><td>0</td><td>11-07-11</td></tr>
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>조회수</th>
+        <th>작성일자</th>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>3번제목</td>
+        <td>0</td>
+        <td>11-07-13</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>2번제목</td>
+        <td>0</td>
+        <td>11-07-12</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1번제목</td>
+        <td>0</td>
+        <td>11-07-11</td>
+      </tr>
     </table>
-        선택된 행 :
-        <span id="s5"></span> / 
-        <span id="s6"></span> / 
-        <span id="s7"></span> / 
-        <span id="s8"></span>
-</body>
+    선택된 행 :
+    <span id="s5"></span> / <span id="s6"></span> / <span id="s7"></span> /
+    <span id="s8"></span>
+  </body>
 </html>

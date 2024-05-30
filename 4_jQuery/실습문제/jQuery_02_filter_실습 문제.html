@@ -17,10 +17,16 @@
 
     <script>
       function checkBtn() {
-        $('input[type=checkbox]').each(function(index, elem){
-            if($(elem).prop('checked'))
-                console.log($(elem).val());
-        })
+        // $('input[type=checkbox]').each(function(index, elem){
+        //     if($(elem).prop('checked'))
+        //         console.log($(elem).val());
+        // })
+
+        // [강사님 풀이]
+        var $checked = $("input").filter(":checked");
+        $checked.each(function (index, elem) {
+          console.log($(elem).val());
+        });
       }
     </script>
 
@@ -35,11 +41,17 @@
 
     <h2>Filter2</h2>
     <script>
+      // 함수 호이스팅이 발생해서 아래의 select에서도 사용이 가능하다.
       function selectBtn() {
-        $('select > option').each(function(index, elem){
-            if($(elem).prop('selected'))
-                console.log($(elem).val());
-        })
+        // $('select > option').each(function(index, elem){
+        //     if($(elem).prop('selected'))
+        //         console.log($(elem).val());
+        // });
+
+        // [강사님 풀이]
+        var $selected = $("option").filter(":selected");
+        console.log($selected.text());
+          
       }
     </script>
 

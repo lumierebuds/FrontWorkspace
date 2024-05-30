@@ -64,6 +64,7 @@
         $("table *").removeAttr("style");
       }
       function click1() {
+        clear();
         $("tbody")
           .children("tr")
           .eq(1)
@@ -73,6 +74,7 @@
           .css("color", "red");
       }
       function click2() {
+        clear();
         $("tbody")
           .children("tr")
           .eq(2)
@@ -82,10 +84,14 @@
           .css("color", "red");
       }
       function click3() {
-        $("tbody").children("tr").eq(1).children().eq(1).css("color", "red");
-        $("tbody").children("tr").eq(2).children().eq(1).css("color", "red");
+        clear();
+        // $("tbody").children("tr").eq(1).children().eq(1).css("color", "red");
+        // $("tbody").children("tr").eq(2).children().eq(1).css("color", "red");
+
+        $("td:nth-of-type(2):not(tr:last-child td)").css("color", "yellow");
       }
       function click4() {
+        clear();
         $("tbody").children("tr").eq(1).children().eq(2).css("color", "red");
         $("tbody").children("tr").eq(2).children().eq(2).css("color", "red");
       }
