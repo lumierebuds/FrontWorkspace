@@ -1,98 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>헤더</title>
-  <style>
-    div {
-      /* border: 1px solid red; */
-      box-sizing: border-box;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>헤더</title>
+    <style>
+      div {
+        /* border: 1px solid red; */
+        box-sizing: border-box;
+      }
 
-    }
+      .header {
+        height: 129.8px;
+        display: flex;
+        background-color: blue;
+      }
 
-    .header {
-      height: 129.8px;
-      display: flex;
-      background-color: blue;
-    }
+      .header-1 {
+        flex-basis: 20%;
+      }
 
-    .header-1 {
-      flex-basis: 20%;
-    }
+      .header-2 {
+        flex-basis: 60%;
+      }
 
-    .header-2 {
-      flex-basis: 60%;
-    }
+      .header-3 {
+        flex-basis: 20%;
+      }
 
-    .header-3 {
-      flex-basis: 20%;
-    }
+      #search-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
-    #search-form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+      #search-form > div {
+        width: 80%;
+      }
 
-    #search-form>div {
-      width: 80%;
-    }
+      #search-keyword {
+        display: flex;
+        justify-content: space-around;
+      }
 
-    #search-keyword {
-      display: flex;
-      justify-content: space-around;
+      #search-keyword > div {
+        height: 100%;
+      }
 
-    }
+      #search-keyword div:first-child {
+        width: 75%;
+      }
 
-    #search-keyword>div {
-      height: 100%;
-    }
+      #search-keyword div:last-child {
+        width: 20%;
+      }
 
-    #search-keyword div:first-child {
-      width: 75%;
-      
-    }
+      h2 {
+        color: white;
+      }
 
-    #search-keyword div:last-child {
-      width: 20%;
-    }
+      #product-name {
+        border-radius: 6px;
+        width: 100%;
+      }
 
-
-    h2 {
-      color: white;
-    }
-
-    #product-name {
-      border-radius: 6px;
-      width: 100%;
-    }
-
-    #product-search {
-      border-radius: 5px;
-      background-color: black;
-      color: white;
-    }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <div class="header-1"></div>
-    <div class="header-2">
-      <form id="search-form" action="">
-        <h2>KH Shopping mall</h2>
-        <div id="search-keyword">
-          <div>
-            <input type="text" name="keyword" id="product-name" placeholder="검색어를 입력하세요" />
+      #product-search {
+        border-radius: 5px;
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-1"></div>
+      <div class="header-2">
+        <form id="search-form" action="">
+          <h2>KH Shopping mall</h2>
+          <div id="search-keyword">
+            <div>
+              <input
+                type="text"
+                name="keyword"
+                id="product-name"
+                placeholder="검색어를 입력하세요"
+              />
+            </div>
+            <div>
+              <input type="submit" id="product-search" value="검색" />
+            </div>
           </div>
-          <div>
-            <input type="submit" id="product-search" value="검색" />
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
+      <div class="header-3"></div>
     </div>
-    <div class="header-3"></div>
-  </div>
-</body>
+  </body>
 </html>

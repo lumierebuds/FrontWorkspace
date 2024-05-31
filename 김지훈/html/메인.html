@@ -1,37 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메인</title>
     <style>
-        div{
-            border: 1px solid red;
-        }
+      div{
+        border: 1px solid red;
+      }
 
-        .main {
-            width: 100%;
-            height: 1040px;
-            display: flex;
-        }
+      .main {
+        width: 100%;
+        height: 1050px;
+        display: flex;
+      }
 
-        .section {
-            width: 70%;
-            height: 100%;
-            background-color: rgb(244, 244, 244);
-        }
+      .section {
+        width: 80%;
+        height: 100%;
+        background-color: rgb(244, 244, 244);
+        display: flex;
+      }
 
-        .aside {
-            width: 30%;
-            height: 100%;
-        }
+      .section-1 {
+        width: 5%;
+      }
+
+      .section-2 {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .section-title{
+        height: 10%;
+      }
+
+      .section-card{
+        height: 90%;
+        display: flex;
+        align-items: flexstart;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+      }
+
+      .section-3 {
+        width: 5%;
+      }
+
+      .aside {
+        width: 20%;
+        height: 100%;
+      }
+
+      /* 목록카드 스타일 */
+      .card {
+        width: 300px;
+        height: 400px;
+        position: relative;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      }
+
+      .card-content {
+        box-sizing: border-box;
+        width: 90%;
+        height: 90%;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .image {
+        width: 100%;
+        height: 65%;
+      }
+
+      .image > img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .title {
+        height: 10%;
+        text-align: center;
+      }
+
+      .title > span {
+        font-weight: bold;
+      }
+
+      .price {
+        height: 10%;
+        text-align: center;
+      }
+
+      .price > span {
+        color: grey;
+      }
+      .basket {
+        height: 15%;
+        text-align: center;
+      }
+
+      .basket > input {
+        width: 80%;
+        height: 80%;
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="main">
-        <div class="section"></div>
-        <div class="aside"></div>
+      <div class="section">
+        <div class="section-1"></div>
+        <div class="section-2">
+          <div class="section-title">
+            <h3>상품 목록</h3>
+          </div>
+          <div class="section-card">
+          <div class="card">
+              <div class="card-content">
+                  <div class="image"><img src="../resources/images/html.jpg" alt="" height="100%"></div>
+                  <div class="title"><span>Do it ! HTML+CSS+자바스크립트</span></div>
+                  <div class="price"><span>30000원</span></div>
+                  <div class="basket"><input type="button" value="장바구니 담기"></div>
+              </div>
+              
+          </div>
+          <div class="card">
+            <div class="card-content">
+                <div class="image"><img src="../resources/images/html.jpg" alt="" height="100%"></div>
+                <div class="title"><span>Do it ! HTML+CSS+자바스크립트</span></div>
+                <div class="price"><span>30000원</span></div>
+                <div class="basket"><input type="button" value="장바구니 담기"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+                <div class="image"><img src="../resources/images/html.jpg" alt="" height="100%"></div>
+                <div class="title"><span>Do it ! HTML+CSS+자바스크립트</span></div>
+                <div class="price"><span>30000원</span></div>
+                <div class="basket"><input type="button" value="장바구니 담기"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+                <div class="image"><img src="../resources/images/html.jpg" alt="" height="100%"></div>
+                <div class="title"><span>Do it ! HTML+CSS+자바스크립트</span></div>
+                <div class="price"><span>30000원</span></div>
+                <div class="basket"><input type="button" value="장바구니 담기"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+                <div class="image"><img src="../resources/images/html.jpg" alt="" height="100%"></div>
+                <div class="title"><span>Do it ! HTML+CSS+자바스크립트</span></div>
+                <div class="price"><span>30000원</span></div>
+                <div class="basket"><input type="button" value="장바구니 담기"></div>
+            </div>
+            
+        </div>
+        <div class="card">
+          <div class="card-content">
+              <div class="image"><img src="../resources/images/html.jpg" alt="" height="100%"></div>
+              <div class="title"><span>Do it ! HTML+CSS+자바스크립트</span></div>
+              <div class="price"><span>30000원</span></div>
+              <div class="basket"><input type="button" value="장바구니 담기"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+              <div class="image"><img src="../resources/images/html.jpg" alt="" height="100%"></div>
+              <div class="title"><span>Do it ! HTML+CSS+자바스크립트</span></div>
+              <div class="price"><span>30000원</span></div>
+              <div class="basket"><input type="button" value="장바구니 담기"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+              <div class="image"><img src="../resources/images/html.jpg" alt="" height="100%"></div>
+              <div class="title"><span>Do it ! HTML+CSS+자바스크립트</span></div>
+              <div class="price"><span>30000원</span></div>
+              <div class="basket"><input type="button" value="장바구니 담기"></div>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div class="section-3"></div>
+        </div>
+      </div>
+      <div class="aside"></div>
     </div>
-</body>
+  </body>
 </html>
