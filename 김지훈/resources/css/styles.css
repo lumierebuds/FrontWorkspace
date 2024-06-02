@@ -197,6 +197,77 @@ h2 {
 /* 상품 스타일 작성 끝*/
 
 /* 모달 스타일 작성 시작*/
+/* 모달창 만들기 출처: https://velog.io/@bami/%EB%AA%A8%EB%8B%AC-%EC%B0%BD-Modal */
+
+
+
+#modalContainer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#modalContent {
+    position: absolute;
+    background-color: #ffffff;
+    width: 400px;
+    height: 500px;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#modalContainer.hidden {
+    display: none;
+}
+
+.modal-close {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.modal-img {
+    width: 100%;
+    height: 70%;
+}
+
+.modal-img>img {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-name {
+    width: 100%;
+    height: 20%;
+}
+
+.modal-descript {
+    width: 100%;
+    height: 20%;
+}
+
+/* css로 닫기 버튼 */
+/* 출처: https: //hongpage.kr/51 [홍페이지 HONGPAGE:티스토리] */
+.close {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.close:after {
+    display: inline-block;
+    content: "\00d7";
+    font-size: 15pt;
+}
+
 
 /* 모달 스타일 작성 끝*/
 

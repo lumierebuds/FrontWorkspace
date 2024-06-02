@@ -66,10 +66,11 @@ function render() {
     var $section = $(".section-card");
 
     for (var product of mockProductList) {
-        var $card = $(`<div class='card' data-pno="${product.pno}" data-title="${product.name}" data-price="${product.price}"></div>`);
+        var $card = $(`<div class='card' data-pno="${product.pno}" data-title="${product.name}" data-price="${product.price}" data-descript="${product.description}"></div>`);
         var $content = $(`<div class='card-content'></div>`);
 
-        $content.append($(`<div class="image"><img src="../${product.src}" alt="" height="100%"></div>`));
+        /* 이미지를 클릭하면 모달창이 나오도록 만든다. */
+        $content.append($(`<div class="image"><img src="../${product.src}" alt="" height="100%" onclick="test1(this);"></div>`));
 
         $content.append($(`<div class="title"><span>${product.name}</span></div>`));
         $content.append($(`<div class="price"><span>${product.price}원</span></div>`));
@@ -122,6 +123,43 @@ function search() {
 
 
 // ---------------- 모달기능과 관련된 코드 시작----------------
+
+
+
+
+function test1(item) {
+    var $card = $(item).parents(".card");
+    // modalContainer는 누르기전까진 display : none 상태로 누르면 보여지도록한다. 
+    var $modal = $("#modalContainer");
+    // modalContent 안에 들어갈 내용들을 바꾸기 위해 제이쿼리 객체로 만든다. 
+    var $modalImg = $(".modal-img > img");
+    var $modalName = $(".modal-name > h4");
+    var $modalDescript = $(".modal-descript");
+
+
+    $modalImg.attr("src", item.src);
+    $modalName.text(`${$card.data("title")}`);
+    $modalDescript.html(`${$card.data("descript")}<br><br> ${$card.data("price")}원`);
+
+    $modal.removeClass("hidden");
+}
+
+function test2() {
+    var $modal = $("#modalContainer");
+    $modal.addClass("hidden");
+}
+
+
+// modalOpenButton.addEventListener('click', () => {
+//     modal.classList.remove('hidden');
+// });
+
+// modalCloseButton.addEventListener('click', () => {
+//     modal.classList.add('hidden');
+// });
+
+
+
 
 
 // ---------------- 모달기능과 관련된 코드 끝----------------

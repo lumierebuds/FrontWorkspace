@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        /* 모달창 만들기 출처: https://velog.io/@bami/%EB%AA%A8%EB%8B%AC-%EC%B0%BD-Modal */
+
+
+
+        #modalContainer {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        #modalContent {
+            position: absolute;
+            background-color: #ffffff;
+            width: 300px;
+            height: 500px;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #modalContainer.hidden {
+            /* display: none; */
+        }
+
+        .modal-close {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 70%;
+        }
+
+        .modal-img>img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-name {
+            width: 100%;
+            height: 20%;
+        }
+
+        .modal-descript {
+            width: 100%;
+            height: 20%;
+        }
+
+        /* css로 닫기 버튼 */
+        /* 출처: https: //hongpage.kr/51 [홍페이지 HONGPAGE:티스토리] */
+        .close {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .close:after {
+            display: inline-block;
+            content: "\00d7";
+            font-size: 15pt;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="modalOpenButton" onclick="test1(this)">모달창 열기</button>
+
+    <div id="modalContainer" class="hidden">
+        <div id="modalContent">
+            <div class="modal-close">
+                <div class="close"></div>
+            </div>
+            <div class="modal-img">
+                <img src="../resources/images/react.jpg" alt="">
+            </div>
+            <div class="modal-name">
+                <h4>Do it 리액트 네이티브 앱 프로그래밍</h4>
+            </div>
+            <div class="modal-descript">
+                리액트 네이티브를 위한...<br><br>
+                4000원
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var $open = $("#modalOpenButton");
+        var $close = $(".close");
+        var $modal = $("#modalContainer");
+
+        function test1(elem) {
+            console.log(elem);
+        }
+
+        // modalOpenButton.addEventListener('click', () => {
+        //     modal.classList.remove('hidden');
+        // });
+
+        // modalCloseButton.addEventListener('click', () => {
+        //     modal.classList.add('hidden');
+        // });
+
+
+
+    </script>
+
+</body>
+</html>
