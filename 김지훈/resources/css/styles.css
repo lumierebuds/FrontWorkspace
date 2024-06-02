@@ -1,12 +1,198 @@
 /* 공용 스타일 작성 시작*/
+/* 레이아웃을 위한 스타일 */
+.wrap {
+    width: 100%;
+    height: 1400px;
+    margin: 0px;
+}
+
+.header {
+    width: 100%;
+    height: 10%;
+    background-color: blue;
+    display: flex;
+}
+
+.main {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    background-color: rgb(244, 244, 244);
+}
+
+.section {
+    width: 70%;
+    height: 100%;
+    display: flex;
+}
+
+.aside {
+    width: 30%;
+    height: 100%;
+    position: relative;
+}
+
+.footer {
+    width: 100%;
+    height: 5%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
 
 /* 공용 스타일 작성 끝*/
 
 /* Header 스타일 작성 시작*/
+.header-1 {
+    flex-basis: 20%;
+}
+
+.header-2 {
+    flex-basis: 60%;
+}
+
+.header-3 {
+    flex-basis: 20%;
+}
+
+#search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-form>div {
+    width: 80%;
+}
+
+#search-keyword {
+    display: flex;
+    justify-content: space-around;
+}
+
+#search-keyword>div {
+    height: 100%;
+}
+
+#search-keyword div:first-child {
+    width: 75%;
+}
+
+#search-keyword div:last-child {
+    width: 20%;
+}
+
+h2 {
+    color: white;
+}
+
+#product-name {
+    border-radius: 6px;
+    width: 100%;
+}
+
+#product-search {
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
 
 /* Header 스타일 작성 끝*/
 
 /* 상품 스타일 작성 시작*/
+
+/* section 스타일 */
+
+.section-1 {
+    width: 3%;
+}
+
+.section-2 {
+    width: 94%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.section-title {
+    height: 5%;
+}
+
+.section-card {
+    height: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.section-3 {
+    width: 3%;
+}
+
+/* 목록카드 스타일 */
+.card {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.card-content {
+    box-sizing: border-box;
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    width: 100%;
+    height: 65%;
+}
+
+.image>img {
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    height: 10%;
+    text-align: center;
+}
+
+.title>span {
+    font-weight: bold;
+}
+
+.price {
+    height: 10%;
+    text-align: center;
+}
+
+.price>span {
+    color: grey;
+}
+
+.basket {
+    height: 15%;
+    text-align: center;
+}
+
+.basket>input {
+    width: 80%;
+    height: 80%;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
 
 /* 상품 스타일 작성 끝*/
 
@@ -15,10 +201,54 @@
 /* 모달 스타일 작성 끝*/
 
 /* 장바구니 스타일 작성 시작*/
+/* aside 스타일 */
+
+.shopping {
+    height: 95%;
+    width: 90%;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+    position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.shopping-title {
+    text-align: center;
+}
+
+.shopping-price {
+    text-align: center;
+}
+
+.shopping-book {
+    border-bottom: 1px solid grey;
+    margin: 9px;
+}
 
 /* 장바구니 스타일 작성 끝*/
 
 /* 푸터 스타일 작성 시작*/
+.footer-1 {
+    height: 30%;
+}
+
+.footer-2 {
+    height: 40%;
+    text-align: center;
+}
+
+.footer-2>span {
+    color: white;
+
+}
+
+.footer-3 {
+    height: 30%;
+}
 
 /* 푸터 스타일 작성 끝*/
-
